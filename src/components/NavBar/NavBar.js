@@ -4,7 +4,7 @@ import logo from "../../assets/images/camera_logo.png";
 
 const NavBar = () => {
   return (
-    <div class="navbar">
+    <div className="navbar">
       <NavBarLeftContent />
       <NavBarRightContent />
     </div>
@@ -13,7 +13,7 @@ const NavBar = () => {
 
 const NavBarLeftContent = () => {
   return (
-    <div class="navbar-left-content">
+    <div className="navbar-left-content">
       <Logo />
     </div>
   );
@@ -21,18 +21,18 @@ const NavBarLeftContent = () => {
 
 const NavBarRightContent = () => {
   return (
-    <div class="navbar-right-content">
+    <div className="navbar-right-content">
       <SaveButton />
     </div>
   );
 };
 
 const Logo = () => {
-  return <img class="logo" src={logo} alt="camera-logo" />;
+  return <img className="logo" src={logo} alt="camera-logo" />;
 };
 
 const SaveButton = () => {
-  return <button class="save-btn">Save</button>;
+  return <button className="save-btn">Save</button>;
 };
 
 export default NavBar;
