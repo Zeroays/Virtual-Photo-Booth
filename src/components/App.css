@@ -1,0 +1,46 @@
+/* @font-face {
+  font-family: "Abel";
+  font-style: normal;
+  font-weight: 400;
+  src: local("Abel Regular") url("/src/assets/fonts/Abel-Regular.ttf")
+    format("ttf");
+} */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 16px;
+  --sidebar-width: 50px;
+  --navbar-height: 3.5rem;
+  --properties-bar-width: 250px;
+  font-family: "Abel", sans-serif;
+}
+
+body {
+  overflow: hidden;
+}
+
+button {
+  border: none;
+  outline: none;
+  background: none;
+}
+
+button:hover {
+  cursor: pointer;
+}
+
+.main-wrapper {
+  display: grid;
+  grid-template-columns: var(--sidebar-width) var(--properties-bar-width) auto;
+  grid-template-areas:
+    "navbar navbar navbar"
+    "sidebar properties canvas";
+}
+
+.main-sidebar,
+.sidebar-properties,
+.canvas {
+  height: calc(100vh - var(--navbar-height));
+}
