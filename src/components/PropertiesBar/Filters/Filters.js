@@ -32,8 +32,7 @@ const FilterCustom = ({ filterData, sliderHandler }) => {
       {filterData.map((slider) => {
         return (
           <FilterSlider
-            name={slider.name}
-            value={slider.value}
+            sliderData={slider}
             key={slider.name}
             sliderHandler={sliderHandler}
           />
@@ -43,17 +42,17 @@ const FilterCustom = ({ filterData, sliderHandler }) => {
   );
 };
 
-const FilterSlider = ({ name, value, sliderHandler }) => {
+const FilterSlider = ({ sliderData, sliderHandler }) => {
   return (
     <div className="slider">
-      <span className="filter-name">{name}</span>
-      <span className="filter-value">{value}</span>
+      <span className="filter-name">{sliderData.name}</span>
+      <span className="filter-value">{`${sliderData.value}${sliderData.unit}`}</span>
       <input
         type="range"
-        min="1"
-        max="200"
-        id={name}
-        value={`${value}`}
+        min={sliderData.min}
+        max={sliderData.max}
+        id={sliderData.name}
+        value={sliderData.value}
         className="filter-slider"
         onChange={sliderHandler}
       ></input>
