@@ -13,19 +13,24 @@ const sideBarContent = [
   { name: "Filters", icon: faSlidersH },
 ];
 
-const SideBar = () => {
+const SideBar = ({ propertyHandler }) => {
   return (
     <div className="main-sidebar">
       {sideBarContent.map((item) => {
         return (
-          <SideBarChoice name={item.name} icon={item.icon} key={item.name} />
+          <SideBarChoice
+            name={item.name}
+            icon={item.icon}
+            key={item.name}
+            propertyHandler={propertyHandler}
+          />
         );
       })}
     </div>
   );
 };
 
-const SideBarChoice = ({ name, icon }) => {
+const SideBarChoice = ({ name, icon, propertyHandler }) => {
   const [photoStripVisible, setPhotoStripVisiblilty] = useState(false);
 
   const handlePhotoStripVisibility = () => {
@@ -37,6 +42,7 @@ const SideBarChoice = ({ name, icon }) => {
         className="sidebar-btn"
         onMouseEnter={handlePhotoStripVisibility}
         onMouseLeave={handlePhotoStripVisibility}
+        onClick={() => propertyHandler(name)}
       >
         <FontAwesomeIcon icon={icon} />
       </button>
