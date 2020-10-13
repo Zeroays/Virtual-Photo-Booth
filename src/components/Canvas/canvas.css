@@ -1,0 +1,15 @@
+.canvas {
+  grid-area: canvas;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.canvas-image-content {
+  width: 70vh;
+  max-width: 450px;
+}
+
+.canvas-image-content img {
+  width: 100%;
+}
