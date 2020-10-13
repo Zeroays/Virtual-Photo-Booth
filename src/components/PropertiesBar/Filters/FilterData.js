@@ -1,4 +1,4 @@
-const filterData = [
+const filterDataCustom = [
   {
     type: "slider",
     name: "Contrast",
@@ -51,7 +51,7 @@ const filterData = [
     type: "slider",
     name: "Hue Rotate",
     min: "0",
-    value: "20",
+    value: "0",
     max: "360",
     unit: "deg",
   },
@@ -66,7 +66,7 @@ const filterData = [
 ];
 
 const filter1977 = {
-  name: "Aden",
+  name: "1977",
   filters: {
     Contrast: "110",
     Brightness: "110",
@@ -117,6 +117,24 @@ const filterAden = {
   },
 };
 
-const filterDataPresets = [];
+const filterAmaro = {
+  name: "Amaro",
+  filters: {
+    Contrast: "90",
+    Brightness: "110",
+    Saturate: "150",
+    Sepia: "0",
+    Greyscale: "0",
+    Invert: "0",
+    "Hue Rotate": "-10",
+    Blur: "0",
+  },
+  overlay: {
+    type: "None",
+    value: null,
+  },
+};
 
-export default filterData;
+const filterDataPresets = [filter1977, filterAden, filterAmaro];
+
+export { filterDataCustom, filterDataPresets };

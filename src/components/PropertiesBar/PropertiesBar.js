@@ -37,7 +37,6 @@ const PropertiesBarTitle = ({ property }) => {
 };
 
 const PropertiesBarExplanation = ({ property }) => {
-  console.log(property);
   return (
     <div className="property-explanation">
       <p>{propertyExplanations[property]}</p>

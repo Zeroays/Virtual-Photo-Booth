@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import filterData from "./FilterData";
+import { filterDataCustom, filterDataPresets } from "./FilterData";
 import "./filters.css";
 
 const Filters = () => {
-  const [customSlidersData, setCustomSlidersData] = useState(filterData);
+  const [customSlidersData, setCustomSlidersData] = useState(filterDataCustom);
 
   const handleSliderChange = (e) => {
     const updatedSliderData = customSlidersData.map((item) => {
@@ -61,7 +61,26 @@ const FilterSlider = ({ sliderData, sliderHandler }) => {
 };
 
 const FilterPresets = () => {
-  return <div className="filter-presets"></div>;
+  return (
+    <div className="filter-presets">
+      {filterDataPresets.map((preset) => {
+        return <FilterPreset name={preset.name} />;
+      })}
+    </div>
+  );
+};
+
+const FilterPreset = ({ name }) => {
+  return (
+    <div className="preset">
+      <img
+        className="preset-preview"
+        src="/src/assets/stockPhotos/woman_sitting.jpg"
+        alt="catdog"
+      />
+      <div className="preset-name">{name}</div>
+    </div>
+  );
 };
 
 export default Filters;

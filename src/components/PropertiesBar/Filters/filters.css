@@ -61,3 +61,34 @@
   background: linear-gradient(to right, #ff1616, #ff5757); /* Grey background */
   cursor: pointer;
 }
+
+.filter-presets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+}
+
+.preset {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  --filter-preset-width: 0.375;
+  width: calc(var(--filter-preset-width) * var(--properties-bar-width));
+  height: auto;
+  margin-bottom: 20px;
+  background-color: #343b46;
+  color: white;
+  text-align: center;
+}
+
+.preset .preset-preview {
+  width: 100%;
+}
+
+.preset .preset-name {
+  padding: 5px 0;
+  width: 100%;
+}
