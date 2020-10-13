@@ -3,7 +3,9 @@ import { filterDataCustom, filterDataPresets } from "./FilterData";
 import "./filters.css";
 
 const Filters = () => {
-  const [customSlidersData, setCustomSlidersData] = useState(filterDataCustom);
+  const [customSlidersData, setCustomSlidersData] = useState(
+    filterDataCustom.filters
+  );
 
   const handleSliderChange = (e) => {
     const updatedSliderData = customSlidersData.map((item) => {
@@ -64,7 +66,7 @@ const FilterPresets = () => {
   return (
     <div className="filter-presets">
       {filterDataPresets.map((preset) => {
-        return <FilterPreset name={preset.name} />;
+        return <FilterPreset name={preset.name} key={preset.name} />;
       })}
     </div>
   );
