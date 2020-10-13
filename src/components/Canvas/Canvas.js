@@ -5,7 +5,7 @@ const Canvas = () => {
   return (
     <div class="canvas">
       <div class="canvas-image-content">
-        <img src="Conference.jpg" alt="conference" />
+        <img src="/src/assets/stockPhotos/catdog.jpg" alt="catdog" />
       </div>
     </div>
   );
