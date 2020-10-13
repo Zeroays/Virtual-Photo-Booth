@@ -32,7 +32,7 @@
   left: calc(var(--sidebar-width) * -2);
   height: var(--sidebar-width);
   width: calc(var(--sidebar-width) * 2);
-  border: 1px solid rgba(68, 68, 68, 0.445);
+  /* border: 1px solid rgba(68, 68, 68, 0.445); */
   border-left: none;
   background: white;
   text-align: center;
