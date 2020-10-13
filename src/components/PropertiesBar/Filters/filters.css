@@ -1,0 +1,63 @@
+.filter-pane-properties,
+.filter-custom {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding-top: 0.6rem;
+}
+
+.filter-pane-content {
+  width: 100%;
+}
+
+.slider {
+  display: grid;
+  width: inherit;
+  grid-template-columns: 5fr 1fr;
+  grid-row-gap: 0.75rem;
+  padding-bottom: 25px;
+  grid-template-areas:
+    "filter-name filter-value"
+    "filter-slider filter-slider";
+}
+
+.slider .filter-name {
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+}
+
+.slider .filter-value {
+  background: #343b46;
+  color: white;
+  text-align: center;
+  padding: 0.4rem;
+  border-radius: 0.4rem;
+}
+
+.slider .filter-slider {
+  -webkit-appearance: none;
+  background: #d3d3d3;
+  height: 3px;
+  outline: none;
+  grid-area: filter-slider;
+}
+
+.slider .filter-slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background: linear-gradient(to right, #ff1616, #ff5757); /* Grey background */
+  cursor: pointer;
+}
+
+.slider .filter-slider::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 20px;
+  background: linear-gradient(to right, #ff1616, #ff5757); /* Grey background */
+  cursor: pointer;
+}
