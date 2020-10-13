@@ -6,6 +6,15 @@ import Photos from "./Photos/Photos";
 import Props from "./Props/Props";
 import Filters from "./Filters/Filters";
 
+const propertyExplanations = {
+  Photos: `Choose from the stock photos, or upload one of your own.`,
+  Props: `Choose as many of the props below to add to the canvas.  
+  Use the Search Bar to filter out the props.  Hovering over them 
+  will reveal their name.`,
+  Filters: `Choose from either the Presets, or click the Custom Tab
+  to adjust settings like contrast and greyscale, and set an overlay.`,
+};
+
 const PropertiesBar = ({ property }) => {
   return (
     <div className="sidebar-properties">
@@ -21,17 +30,17 @@ const PropertiesBarTitle = ({ property }) => {
       <span className="property-title">{property}</span>
       <button className="question-btn">
         <FontAwesomeIcon icon={faQuestionCircle} />
-        {/* <i className="fa fa-question-circle" aria-hidden="true"></i> */}
       </button>
-      <div className="property-explanation">
-        <p>
-          Bacon ipsum dolor amet jowl andouille filet mignon tenderloin cow
-          ribeye beef turkey meatball prosciutto chuck strip steak tri-tip cupim
-          meatloaf. Landjaeger meatloaf tenderloin burgdoggen turkey, ground
-          round beef chislic spare ribs chicken corned beef shankle. Pastrami
-          cow ham prosciutto venison flank.
-        </p>
-      </div>
+      <PropertiesBarExplanation property={property} />
+    </div>
+  );
+};
+
+const PropertiesBarExplanation = ({ property }) => {
+  console.log(property);
+  return (
+    <div className="property-explanation">
+      <p>{propertyExplanations[property]}</p>
     </div>
   );
 };

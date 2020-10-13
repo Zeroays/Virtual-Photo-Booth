@@ -1,6 +1,5 @@
 .sidebar-properties {
   grid-area: properties;
-  /* border-right: 1px solid grey; */
   border-right: 1px solid #4c566656;
   box-shadow: 0px 10px 15px #4c566660;
 }
@@ -38,18 +37,28 @@
 
 .property-info button:hover {
   color: #7c7d80;
-  /* color: #434c5a; */
+  cursor: auto;
 }
 
 .property-explanation {
+  --explanation-box-width: 250px;
+  --box-offset: 25px;
+  visibility: hidden;
   position: absolute;
-  background: grey;
+  background: #343b46;
+  color: #d9dbdf;
+  padding: 10px;
+  border-radius: 10px;
   top: 0;
-  right: -225px;
-  width: 200px;
+  right: calc(-1 * var(--explanation-box-width) - var(--box-offset));
+  width: var(--explanation-box-width);
   height: auto;
-  border: 1px solid black;
+  box-shadow: 3px 3px 5px #4c5666be;
   z-index: 4;
+}
+
+.property-info button:hover + .property-explanation {
+  visibility: visible;
 }
 
 .property-content {
