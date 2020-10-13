@@ -1,4 +1,4 @@
-export default filterData = [
+const filterData = [
   {
     type: "slider",
     name: "Contrast",
@@ -40,3 +40,5 @@ export default filterData = [
     value: "100",
   },
 ];
+
+export default filterData;
