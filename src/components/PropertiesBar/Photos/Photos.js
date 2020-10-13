@@ -3,39 +3,47 @@ import "./photo.css";
 import photoData from "./PhotoData";
 
 const Photos = () => {
-  return (
-    <div className="photo-pane-properties">
-      <PhotoUploadButton />
-      <PhotoImages />
-    </div>
-  );
-};
-
-const PhotoUploadButton = () => {
   const uploadButtonRef = useRef();
-  const [uploadedPhoto, setUploadedPhoto] = useState(null);
+  const [chosenPhoto, setChosenPhoto] = useState(null);
 
   const handleFileUpload = () => {
     uploadButtonRef.current.click();
   };
 
   const handleFileChange = (e) => {
-    setUploadedPhoto(e.target.value);
+    setChosenPhoto(e.target.value);
   };
 
+  return (
+    <div className="photo-pane-properties">
+      <PhotoUploadButton
+        uploadButtonRef={uploadButtonRef}
+        fileUploadHandler={handleFileUpload}
+        fileChangeHandler={handleFileChange}
+      />
+      <PhotoImages photoChoiceHandler={handleFileChange} />
+    </div>
+  );
+};
+
+const PhotoUploadButton = ({
+  uploadButtonRef,
+  fileUploadHandler,
+  fileChangeHandler,
+}) => {
   return (
     <div className="photo-upload-handler">
       <input
         type="file"
         id="file"
-        onChange={handleFileChange}
+        onChange={fileChangeHandler}
         ref={uploadButtonRef}
         style={{ display: "none" }}
       />
       <button
         className="upload-btn"
         name="button"
-        onClick={handleFileUpload}
+        onClick={fileUploadHandler}
         value="Upload"
       >
         Add Photo
@@ -44,21 +52,28 @@ const PhotoUploadButton = () => {
   );
 };
 
-const PhotoImages = () => {
+const PhotoImages = ({ photoChoiceHandler }) => {
   return (
     <div className="photo-pane-content">
       {photoData.map((data, idx) => {
-        return <PhotoImage image={data} key={idx} />;
+        return (
+          <PhotoImage
+            image={data}
+            key={idx}
+            photoChoiceHandler={photoChoiceHandler}
+          />
+        );
       })}
     </div>
   );
 };
 
-const PhotoImage = ({ image }) => {
+const PhotoImage = ({ image, photoChoiceHandler }) => {
   return (
     <div
       className="stock-photo"
       style={{ backgroundImage: `url(${image})` }}
+      onClick={photoChoiceHandler}
     ></div>
   );
 };

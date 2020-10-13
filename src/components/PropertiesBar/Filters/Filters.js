@@ -1,61 +1,8 @@
 import React, { useState } from "react";
+import filterData from "./FilterData";
 import "./filters.css";
 
-const filterData = [
-  {
-    type: "slider",
-    name: "Contrast",
-    value: "100",
-  },
-  {
-    type: "slider",
-    name: "Brightness",
-    value: "100",
-  },
-  {
-    type: "slider",
-    name: "Saturate",
-    value: "100",
-  },
-  {
-    type: "slider",
-    name: "Sepia",
-    value: "100",
-  },
-  {
-    type: "slider",
-    name: "Greyscale",
-    value: "100",
-  },
-  {
-    type: "slider",
-    name: "Invert",
-    value: "100",
-  },
-  {
-    type: "slider",
-    name: "Hue Rotate",
-    value: "100",
-  },
-  {
-    type: "slider",
-    name: "Blur",
-    value: "100",
-  },
-];
-
 const Filters = () => {
-  return (
-    <div className="filter-pane-properties">
-      <div className="filter-pane-content">
-        <FilterCustom />
-        <FilterPresets />
-      </div>
-    </div>
-  );
-};
-
-const FilterCustom = () => {
   const [customSlidersData, setCustomSlidersData] = useState(filterData);
 
   const handleSliderChange = (e) => {
@@ -67,14 +14,28 @@ const FilterCustom = () => {
   };
 
   return (
+    <div className="filter-pane-properties">
+      <div className="filter-pane-content">
+        <FilterCustom
+          filterData={customSlidersData}
+          sliderHandler={handleSliderChange}
+        />
+        <FilterPresets />
+      </div>
+    </div>
+  );
+};
+
+const FilterCustom = ({ filterData, sliderHandler }) => {
+  return (
     <div className="filter-custom">
-      {customSlidersData.map((slider) => {
+      {filterData.map((slider) => {
         return (
           <FilterSlider
             name={slider.name}
             value={slider.value}
             key={slider.name}
-            sliderHandler={handleSliderChange}
+            sliderHandler={sliderHandler}
           />
         );
       })}
