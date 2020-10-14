@@ -12,9 +12,28 @@
   width: 100%;
 }
 
+.filter-options {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-options-btn {
+  color: #f0f0f0a1;
+  background: black;
+  padding: 0.6rem;
+  width: 50%;
+}
+
+.filter-custom,
+.filter-presets {
+  background: #343b46;
+  padding-top: 20px;
+}
+
 .slider {
   display: grid;
-  width: inherit;
+  width: 85%;
   grid-template-columns: 5fr 1fr;
   grid-row-gap: 0.75rem;
   padding-bottom: 25px;
@@ -26,6 +45,7 @@
 .slider .filter-name {
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
+  color: white;
 }
 
 .slider .filter-value {
@@ -41,6 +61,7 @@
   background: #d3d3d3;
   height: 3px;
   outline: none;
+  width: 100%;
   grid-area: filter-slider;
 }
 
@@ -84,23 +105,10 @@
   cursor: pointer;
 }
 
-.preset-filter {
-  position: relative;
-}
-
 .preset-filter,
 .preset-preview {
   width: 100%;
   height: 70px;
-}
-
-.preset-filter-overlay {
-  display: block;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
 }
 
 .preset-preview {
@@ -109,6 +117,6 @@
 
 .preset-name {
   width: 100%;
-  background-color: #343b46;
+  background-color: rgb(96, 110, 124);
   color: white;
 }

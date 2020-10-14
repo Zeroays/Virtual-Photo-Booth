@@ -3,9 +3,13 @@ import { filterDataCustom, filterDataPresets } from "./FilterData";
 import "./filters.css";
 
 const Filters = () => {
+  const options = ["Preset", "Custom"];
+
   const [customSlidersData, setCustomSlidersData] = useState(
     filterDataCustom.filters
   );
+
+  const [selectedFilterTab, setSelectedFilterTab] = useState("Preset");
 
   const handleSliderChange = (e) => {
     const updatedSliderData = customSlidersData.map((item) => {
@@ -15,16 +19,69 @@ const Filters = () => {
     setCustomSlidersData(updatedSliderData);
   };
 
+  const handleFilterSelection = (e) => {
+    setSelectedFilterTab(e.target.innerHTML);
+  };
+
   return (
     <div className="filter-pane-properties">
       <div className="filter-pane-content">
-        <FilterCustom
-          filterData={customSlidersData}
-          sliderHandler={handleSliderChange}
+        <FilterTabsButtons
+          options={options}
+          filterSelectionHandler={handleFilterSelection}
+          selectedFilterTab={selectedFilterTab}
         />
-        <FilterPresets />
+        {
+          {
+            Preset: <FilterPresets />,
+            Custom: (
+              <FilterCustom
+                filterData={customSlidersData}
+                sliderHandler={handleSliderChange}
+              />
+            ),
+          }[selectedFilterTab]
+        }
       </div>
     </div>
+  );
+};
+
+const FilterTabsButtons = ({
+  options,
+  filterSelectionHandler,
+  selectedFilterTab,
+}) => {
+  return (
+    <div className="filter-options">
+      {options.map((option) => {
+        console.log(option, selectedFilterTab);
+        return (
+          <FilterTabButton
+            name={option}
+            key={option}
+            filterSelectionHandler={filterSelectionHandler}
+            style={
+              option === selectedFilterTab
+                ? { background: "#343b46", color: "white" }
+                : null
+            }
+          />
+        );
+      })}
+    </div>
+  );
+};
+
+const FilterTabButton = ({ name, filterSelectionHandler, style }) => {
+  return (
+    <button
+      className="filter-options-btn"
+      onClick={filterSelectionHandler}
+      style={style}
+    >
+      {name}
+    </button>
   );
 };
 
@@ -89,17 +146,5 @@ const FilterPreset = ({ preset }) => {
     </div>
   );
 };
-
-// const convertFilterDataToStyle = (preset) => {
-//   const style = preset.reduce(
-//     (res, filter) =>
-//       res + `${filter.name.replace(" ", "-").toLowerCase()}(${filter.value}) `,
-//     ""
-//   );
-//   return {
-//     filter: style,
-//     WebkitFilter: style,
-//   };
-// };
 
 export default Filters;
