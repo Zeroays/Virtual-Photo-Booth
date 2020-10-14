@@ -71,76 +71,104 @@ const filterDataCustom = {
   },
 };
 
-const filter1977 = {
-  name: "1977",
-  filters: [
-    { name: "Contrast", value: "110%" },
-    { name: "Brightness", value: "110%" },
-    { name: "Saturate", value: "130%" },
-    { name: "Sepia", value: "0%" },
-    { name: "Grayscale", value: "0%" },
-    { name: "Invert", value: "0%" },
-    { name: "Hue Rotate", value: "0deg" },
-    { name: "Blur", value: "0px" },
-  ],
-  overlay: {
-    type: "Solid Background",
-    value: {
-      "Background Color": "rgba(243, 106, 188, 0.3)",
-      "Mix Blend Mode": "screen",
-      Opacity: "100",
-    },
-  },
-};
+// const filter1977 = {
+//   name: "1977",
+//   filters: [
+//     { name: "Contrast", value: "110%" },
+//     { name: "Brightness", value: "110%" },
+//     { name: "Saturate", value: "130%" },
+//     { name: "Sepia", value: "0%" },
+//     { name: "Grayscale", value: "0%" },
+//     { name: "Invert", value: "0%" },
+//     { name: "Hue Rotate", value: "0deg" },
+//     { name: "Blur", value: "0px" },
+//   ],
+//   overlay: {
+//     type: "Solid Background",
+//     value: {
+//       "Background Color": "rgba(243, 106, 188, 0.3)",
+//       "Mix Blend Mode": "screen",
+//       Opacity: "100",
+//     },
+//   },
+// };
 
-const filterAden = {
-  name: "Aden",
-  filters: [
-    { name: "Contrast", value: "90%" },
-    { name: "Brightness", value: "120%" },
-    { name: "Saturate", value: "85%" },
-    { name: "Sepia", value: "0%" },
-    { name: "Grayscale", value: "0%" },
-    { name: "Invert", value: "0%" },
-    { name: "Hue Rotate", value: "20deg" },
-    { name: "Blur", value: "0px" },
-  ],
-  overlay: {
-    type: "Linear Gradient",
-    value: {
-      "Color 1": {
-        value: "rgba(66, 10, 14, 0.2)",
-        stop: "1",
-      },
-      "Color 2": {
-        value: "rgba(66, 10, 14, 0)",
-        stop: "100",
-      },
-      "Gradient Direction": "to right",
-      "Mix Blend Mode": "darken",
-      Opacity: "100",
-    },
-  },
-};
+// const filterAden = {
+//   name: "Aden",
+//   filters: [
+//     { name: "Contrast", value: "90%" },
+//     { name: "Brightness", value: "120%" },
+//     { name: "Saturate", value: "85%" },
+//     { name: "Sepia", value: "0%" },
+//     { name: "Grayscale", value: "0%" },
+//     { name: "Invert", value: "0%" },
+//     { name: "Hue Rotate", value: "20deg" },
+//     { name: "Blur", value: "0px" },
+//   ],
+//   overlay: {
+//     type: "Linear Gradient",
+//     value: {
+//       "Color 1": {
+//         value: "rgba(66, 10, 14, 0.2)",
+//         stop: "1",
+//       },
+//       "Color 2": {
+//         value: "rgba(66, 10, 14, 0)",
+//         stop: "100",
+//       },
+//       "Gradient Direction": "to right",
+//       "Mix Blend Mode": "darken",
+//       Opacity: "100",
+//     },
+//   },
+// };
 
-const filterAmaro = {
-  name: "Amaro",
-  filters: [
-    { name: "Contrast", value: "90%" },
-    { name: "Brightness", value: "110%" },
-    { name: "Saturate", value: "150%" },
-    { name: "Sepia", value: "0%" },
-    { name: "Grayscale", value: "0%" },
-    { name: "Invert", value: "0%" },
-    { name: "Hue Rotate", value: "-10deg" },
-    { name: "Blur", value: "0px" },
-  ],
-  overlay: {
-    type: "None",
-    value: null,
-  },
-};
+// const filterAmaro = {
+//   name: "Amaro",
+//   filters: [
+//     { name: "Contrast", value: "90%" },
+//     { name: "Brightness", value: "110%" },
+//     { name: "Saturate", value: "150%" },
+//     { name: "Sepia", value: "0%" },
+//     { name: "Grayscale", value: "0%" },
+//     { name: "Invert", value: "0%" },
+//     { name: "Hue Rotate", value: "-10deg" },
+//     { name: "Blur", value: "0px" },
+//   ],
+//   overlay: {
+//     type: "None",
+//     value: null,
+//   },
+// };
 
-const filterDataPresets = [filter1977, filterAden, filterAmaro];
+// const filterDataPresets = [filter1977, filterAden, filterAmaro];
+
+const filterDataPresets = [
+  { filter: "1977", className: "_1977" },
+  { filter: "Aden", className: "aden" },
+  { filter: "Amaro", className: "amaro" },
+  { filter: "Brannan", className: "brannan" },
+  { filter: "Brooklyn", className: "brooklyn" },
+  { filter: "Clarendon", className: "clarendon" },
+  { filter: "Gingham", className: "gingham" },
+  { filter: "Hudson", className: "hudson" },
+  { filter: "Inkwell", className: "inkwell" },
+  { filter: "Kelvin", className: "kelvin" },
+  { filter: "Lark", className: "lark" },
+  { filter: "Lo-fi", className: "lofi" },
+  { filter: "Mayfair", className: "mayfair" },
+  { filter: "Moon", className: "moon" },
+  { filter: "Nashville", className: "nashville" },
+  { filter: "Perpetua", className: "perpetua" },
+  { filter: "Reyes", className: "reyes" },
+  { filter: "Rise", className: "rise" },
+  { filter: "Slumber", className: "slumber" },
+  { filter: "Stinson", className: "stinson" },
+  { filter: "Toaster", className: "toaster" },
+  { filter: "Valencia", className: "valencia" },
+  { filter: "Walden", className: "walden" },
+  { filter: "Willow", className: "willow" },
+  { filter: "X-Pro-2", className: "xpro2" },
+];
 
 export { filterDataCustom, filterDataPresets };

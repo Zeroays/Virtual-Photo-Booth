@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { filterDataCustom, filterDataPresets } from "./FilterData";
 import "./filters.css";
 
@@ -66,39 +66,40 @@ const FilterPresets = () => {
   return (
     <div className="filter-presets">
       {filterDataPresets.map((preset) => {
-        return <FilterPreset preset={preset} key={preset.name} />;
+        return <FilterPreset preset={preset} key={preset.filter} />;
       })}
     </div>
   );
 };
 
 const FilterPreset = ({ preset }) => {
-  const presetFilterStyle = convertFilterDataToStyle(preset.filters);
+  // const presetFilterStyle = convertFilterDataToStyle(preset.filters);
+  // style={presetFilterStyle}
   return (
     <div className="preset">
-      <div className="preset-filter" style={presetFilterStyle}>
-        <div className="preset-filter-overlay"></div>
+      <div className={`preset-filter ${preset.className}`}>
+        {/* <div className="preset-filter-overlay"></div> */}
         <img
           className="preset-preview"
           src="/src/assets/stockPhotos/woman_sitting.jpg"
           alt="catdog"
         />
       </div>
-      <div className="preset-name">{preset.name}</div>
+      <div className="preset-name">{preset.filter}</div>
     </div>
   );
 };
 
-const convertFilterDataToStyle = (preset) => {
-  const style = preset.reduce(
-    (res, filter) =>
-      res + `${filter.name.replace(" ", "-").toLowerCase()}(${filter.value}) `,
-    ""
-  );
-  return {
-    filter: style,
-    WebkitFilter: style,
-  };
-};
+// const convertFilterDataToStyle = (preset) => {
+//   const style = preset.reduce(
+//     (res, filter) =>
+//       res + `${filter.name.replace(" ", "-").toLowerCase()}(${filter.value}) `,
+//     ""
+//   );
+//   return {
+//     filter: style,
+//     WebkitFilter: style,
+//   };
+// };
 
 export default Filters;

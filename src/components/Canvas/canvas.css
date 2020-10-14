@@ -6,8 +6,9 @@
 }
 
 .canvas-image-content {
-  width: 70vh;
-  max-width: 450px;
+  width: 70%;
+  min-width: 300px;
+  display: flex;
 }
 
 .canvas-image-content img {

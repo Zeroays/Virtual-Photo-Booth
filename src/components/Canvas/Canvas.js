@@ -4,7 +4,7 @@ import "./canvas.css";
 const Canvas = () => {
   return (
     <div className="canvas">
-      <div className="canvas-image-content">
+      <div className="canvas-image-content aden">
         <img src="/src/assets/stockPhotos/catdog.jpg" alt="catdog" />
       </div>
     </div>
