@@ -66,23 +66,39 @@ const FilterPresets = () => {
   return (
     <div className="filter-presets">
       {filterDataPresets.map((preset) => {
-        return <FilterPreset name={preset.name} key={preset.name} />;
+        return <FilterPreset preset={preset} key={preset.name} />;
       })}
     </div>
   );
 };
 
-const FilterPreset = ({ name }) => {
+const FilterPreset = ({ preset }) => {
+  const presetFilterStyle = convertFilterDataToStyle(preset.filters);
   return (
     <div className="preset">
-      <img
-        className="preset-preview"
-        src="/src/assets/stockPhotos/woman_sitting.jpg"
-        alt="catdog"
-      />
-      <div className="preset-name">{name}</div>
+      <div className="preset-filter" style={presetFilterStyle}>
+        <div className="preset-filter-overlay"></div>
+        <img
+          className="preset-preview"
+          src="/src/assets/stockPhotos/woman_sitting.jpg"
+          alt="catdog"
+        />
+      </div>
+      <div className="preset-name">{preset.name}</div>
     </div>
   );
+};
+
+const convertFilterDataToStyle = (preset) => {
+  const style = preset.reduce(
+    (res, filter) =>
+      res + `${filter.name.replace(" ", "-").toLowerCase()}(${filter.value}) `,
+    ""
+  );
+  return {
+    filter: style,
+    WebkitFilter: style,
+  };
 };
 
 export default Filters;

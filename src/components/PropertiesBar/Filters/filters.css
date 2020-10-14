@@ -73,14 +73,10 @@
 .preset {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
   --filter-preset-width: 0.375;
   width: calc(var(--filter-preset-width) * var(--properties-bar-width));
   height: auto;
   margin-bottom: 20px;
-  background-color: #343b46;
-  color: white;
   text-align: center;
 }
 
@@ -88,11 +84,31 @@
   cursor: pointer;
 }
 
-.preset .preset-preview {
-  width: 100%;
+.preset-filter {
+  position: relative;
 }
 
-.preset .preset-name {
-  padding: 5px 0;
+.preset-filter,
+.preset-preview {
   width: 100%;
+  height: 70px;
+}
+
+.preset-filter-overlay {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}
+
+.preset-preview {
+  object-fit: cover;
+}
+
+.preset-name {
+  width: 100%;
+  background-color: #343b46;
+  color: white;
 }
