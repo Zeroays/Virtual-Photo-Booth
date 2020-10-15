@@ -31,6 +31,20 @@
   padding-top: 20px;
 }
 
+.filter-title,
+.overlay-title {
+  width: 85%;
+  text-transform: uppercase;
+  text-align: left;
+  letter-spacing: 0.05rem;
+  color: white;
+  margin-bottom: 20px;
+}
+
+.overlay-title {
+  margin-top: 20px;
+}
+
 .slider {
   display: grid;
   width: 85%;
@@ -40,17 +54,18 @@
   grid-template-areas:
     "filter-name filter-value"
     "filter-slider filter-slider";
+  color: rgba(255, 255, 255, 0.63);
 }
 
 .slider .filter-name {
   padding-top: 0.4rem;
   padding-bottom: 0.4rem;
-  color: white;
+  color: inherit;
 }
 
 .slider .filter-value {
   background: #343b46;
-  color: white;
+  color: inherit;
   text-align: center;
   padding: 0.4rem;
   border-radius: 0.4rem;

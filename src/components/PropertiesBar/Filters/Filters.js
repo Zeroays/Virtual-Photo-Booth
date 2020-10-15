@@ -1,23 +1,12 @@
-import React, { useState, useRef, useEffect } from "react";
-import { filterDataCustom, filterDataPresets } from "./FilterData";
+import React, { useState } from "react";
+import FilterPresets from "./FilterPresets";
+import FilterCustom from "./FilterCustom";
 import "./filters.css";
 
 const Filters = () => {
   const options = ["Preset", "Custom"];
 
-  const [customSlidersData, setCustomSlidersData] = useState(
-    filterDataCustom.filters
-  );
-
   const [selectedFilterTab, setSelectedFilterTab] = useState("Preset");
-
-  const handleSliderChange = (e) => {
-    const updatedSliderData = customSlidersData.map((item) => {
-      if (item.name === e.target.id) item.value = e.target.value;
-      return item;
-    });
-    setCustomSlidersData(updatedSliderData);
-  };
 
   const handleFilterSelection = (e) => {
     setSelectedFilterTab(e.target.innerHTML);
@@ -34,12 +23,7 @@ const Filters = () => {
         {
           {
             Preset: <FilterPresets />,
-            Custom: (
-              <FilterCustom
-                filterData={customSlidersData}
-                sliderHandler={handleSliderChange}
-              />
-            ),
+            Custom: <FilterCustom />,
           }[selectedFilterTab]
         }
       </div>
@@ -55,7 +39,6 @@ const FilterTabsButtons = ({
   return (
     <div className="filter-options">
       {options.map((option) => {
-        console.log(option, selectedFilterTab);
         return (
           <FilterTabButton
             name={option}
@@ -82,68 +65,6 @@ const FilterTabButton = ({ name, filterSelectionHandler, style }) => {
     >
       {name}
     </button>
-  );
-};
-
-const FilterCustom = ({ filterData, sliderHandler }) => {
-  return (
-    <div className="filter-custom">
-      {filterData.map((slider) => {
-        return (
-          <FilterSlider
-            sliderData={slider}
-            key={slider.name}
-            sliderHandler={sliderHandler}
-          />
-        );
-      })}
-    </div>
-  );
-};
-
-const FilterSlider = ({ sliderData, sliderHandler }) => {
-  return (
-    <div className="slider">
-      <span className="filter-name">{sliderData.name}</span>
-      <span className="filter-value">{`${sliderData.value}${sliderData.unit}`}</span>
-      <input
-        type="range"
-        min={sliderData.min}
-        max={sliderData.max}
-        id={sliderData.name}
-        value={sliderData.value}
-        className="filter-slider"
-        onChange={sliderHandler}
-      ></input>
-    </div>
-  );
-};
-
-const FilterPresets = () => {
-  return (
-    <div className="filter-presets">
-      {filterDataPresets.map((preset) => {
-        return <FilterPreset preset={preset} key={preset.filter} />;
-      })}
-    </div>
-  );
-};
-
-const FilterPreset = ({ preset }) => {
-  // const presetFilterStyle = convertFilterDataToStyle(preset.filters);
-  // style={presetFilterStyle}
-  return (
-    <div className="preset">
-      <div className={`preset-filter ${preset.className}`}>
-        {/* <div className="preset-filter-overlay"></div> */}
-        <img
-          className="preset-preview"
-          src="/src/assets/stockPhotos/woman_sitting.jpg"
-          alt="catdog"
-        />
-      </div>
-      <div className="preset-name">{preset.filter}</div>
-    </div>
   );
 };
 

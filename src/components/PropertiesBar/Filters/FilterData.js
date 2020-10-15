@@ -66,9 +66,93 @@ const filterDataCustom = {
     },
   ],
   overlay: {
-    type: "None",
-    value: null,
+    options: ["None", "Solid Background", "Linear Gradient", "Radial Gradient"],
+    selectedOption: "None",
+    data: {
+      None: null,
+      "Solid Background": {
+        "background-color": "rgba(255, 87, 87, 1)",
+        "mix-blend-mode": { ...mixBlendModeObj },
+        opacity: "50%",
+      },
+      "Linear Gradient": {
+        "color-1": "rgba(255, 87, 87, 1)",
+        "stop-1": "10",
+        "color-2": "rgba(255, 22, 22, 1)",
+        "stop-2": "100",
+        "gradient-direction": {
+          options: [
+            "to bottom left",
+            "to bottom",
+            "to bottom right",
+            "to right",
+            "to left",
+            "to top left",
+            "to top right",
+          ],
+          selectedOption: "to bottom",
+        },
+        "mix-blend-mode": { ...mixBlendModeObj },
+        opacity: "50%",
+      },
+      "Radial Gradient": {
+        "color-1": "rgba(255, 87, 87, 1)",
+        "stop-1": "10",
+        "color-2": "rgba(255, 22, 22, 1)",
+        "stop-2": "100",
+        "gradient-position": {
+          options: [
+            "left top",
+            "center top",
+            "right top",
+            "left center",
+            "center center",
+            "right center",
+            "left bottom",
+            "center bottom",
+            "right bottom",
+          ],
+          selectedOption: "center center",
+        },
+        "gradient-size": {
+          options: [
+            "closest-corner",
+            "closest-side",
+            "farthest-side",
+            "farthest-corner",
+          ],
+          selectedOption: "closest-corner",
+        },
+        "mix-blend-mode": { ...mixBlendModeObj },
+        opacity: "50%",
+      },
+    },
   },
+};
+
+const mixBlendModeObj = {
+  options: [
+    "normal",
+    "multiply",
+    "screen",
+    "overlay",
+    "darken",
+    "lighten",
+    "color-dodge",
+    "color-burn",
+    "hard-light",
+    "soft-light",
+    "difference",
+    "exclusion",
+    "hue",
+    "saturation",
+    "color",
+    "luminosity",
+    "initial",
+    "inherit",
+    "unset",
+  ],
+  selectedOption: "normal",
 };
 
 const filterDataPresets = [
