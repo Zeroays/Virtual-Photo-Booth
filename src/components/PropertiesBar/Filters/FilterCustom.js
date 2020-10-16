@@ -1,47 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import ColorPicker from "/src/components/Utils/ColorPicker";
 import { filterDataCustom } from "./FilterData";
 
 const FilterCustom = () => {
-  const [customData, setCustomData] = useState(filterDataCustom);
-
-  const [selectedOverlay, setSelectedOverlay] = useState(
-    customData.overlay.selectedOption
-  );
-  const handleSliderChange = (e) => {
-    const updatedSliderData = customData.filters.map((item) => {
-      if (item.name === e.target.id) item.value = e.target.value;
-      return item;
-    });
-    setCustomData({ filters: updatedSliderData, overlay: customData.overlay });
-  };
-  const handleOverlaySelection = (e) => {
-    setSelectedOverlay(e.target.value);
-  };
   return (
     <div className="filter-custom">
-      <FilterCustomSliders
-        filters={customData.filters}
-        sliderHandler={handleSliderChange}
-      />
-      <FilterCustomOverlayChoices
-        overlay={customData.overlay}
-        overlayHandler={handleOverlaySelection}
-        selectedOverlay={selectedOverlay}
-      />
-      {
-        {
-          None: null,
-          "Solid Background": <SolidBackgroundProperties />,
-          "Linear Gradient": <LinearGradientBackgroundProperties />,
-          "Radial Gradient": <RadialGradientBackgroundProperties />,
-        }[selectedOverlay]
-      }
+      <FilterCustomSliders />
+      <FilterCustomOverlayChoices />
     </div>
   );
 };
 
-const SolidBackgroundProperties = () => {
-  return <h1>SolidBackgroundProperties</h1>;
+const SolidBackgroundProperties = ({ data }) => {
+  const [mixBlendModeOption, setMixBlendModeOption] = useState(
+    data["mix-blend-mode"].selectedOption
+  );
+  const [opacity, setOpacity] = useState(data.opacity);
+  const handleMixBlendModeSelectedOption = (e) => {
+    setMixBlendModeOption(e.target.value);
+  };
+  const handleSliderChange = (e) => {
+    const res = { ...opacity };
+    res.value = e.target.value;
+    setOpacity(res);
+  };
+  return (
+    <>
+      <span className="picker-title">Background Color</span>
+      <ColorPicker />
+      <DropDown
+        selected={mixBlendModeOption}
+        dropDownData={data["mix-blend-mode"].options}
+        dropDownHandler={handleMixBlendModeSelectedOption}
+      />
+      <Slider sliderData={opacity} sliderHandler={handleSliderChange} />
+    </>
+  );
 };
 
 const LinearGradientBackgroundProperties = () => {
@@ -52,24 +46,108 @@ const RadialGradientBackgroundProperties = () => {
   return <h1>RadialGradientBackgroundProperties</h1>;
 };
 
-const FilterCustomSliders = ({ filters, sliderHandler }) => {
+const FilterCustomSliders = () => {
+  const [filterSlidersData, setFilterSlidersData] = useState(
+    filterDataCustom.filters
+  );
+
+  const handleSliderChange = (e) => {
+    const updatedSliderData = filterSlidersData.map((item) => {
+      if (item.name === e.target.id) item.value = e.target.value;
+      return item;
+    });
+    setFilterSlidersData(updatedSliderData);
+  };
   return (
-    <>
+    <div className="filters">
       <span className="filter-title">Filters</span>
-      {filters.map((slider) => {
+      {filterSlidersData.map((slider) => {
         return (
-          <FilterSlider
+          <Slider
             sliderData={slider}
             key={slider.name}
-            sliderHandler={sliderHandler}
+            sliderHandler={handleSliderChange}
           />
         );
       })}
-    </>
+    </div>
   );
 };
 
-const FilterSlider = ({ sliderData, sliderHandler }) => {
+const FilterCustomOverlayChoices = () => {
+  const [overlayData, setOverlayData] = useState(filterDataCustom.overlay);
+
+  const [selectedOverlay, setSelectedOverlay] = useState(
+    filterDataCustom.overlay.selectedOption
+  );
+
+  const handleOverlaySelection = (e) => {
+    setSelectedOverlay(e.target.value);
+  };
+  return (
+    <div className="overlay">
+      <RadioButtons
+        selected={selectedOverlay}
+        radioButtonsData={overlayData.options}
+        radioButtonsHandler={handleOverlaySelection}
+      />
+      {
+        {
+          None: null,
+          "Solid Background": (
+            <SolidBackgroundProperties
+              data={overlayData.data["Solid Background"]}
+            />
+          ),
+          "Linear Gradient": <LinearGradientBackgroundProperties />,
+          "Radial Gradient": <RadialGradientBackgroundProperties />,
+        }[selectedOverlay]
+      }
+    </div>
+  );
+};
+
+//Reusable Components
+
+const RadioButtons = ({ selected, radioButtonsData, radioButtonsHandler }) => {
+  return (
+    <div className="radio-btns">
+      <span className="radio-btns-title">Overlay</span>
+      <div className="radio-btns-choices">
+        {radioButtonsData.map((option) => {
+          return (
+            <div className="choice" key={option}>
+              <label htmlFor={option}>{option}</label>
+              <input
+                type="radio"
+                id={option}
+                name="overlay-type"
+                value={option}
+                onChange={radioButtonsHandler}
+                checked={selected === option}
+              />
+            </div>
+          );
+        })}
+      </div>
+    </div>
+  );
+};
+
+const DropDown = ({ selected, dropDownData, dropDownHandler }) => {
+  return (
+    <div className="dropdown">
+      <span className="dropdown-title">{dropDownData.name}</span>
+      <select value={selected} onChange={dropDownHandler}>
+        {dropDownData.map((option) => {
+          return <option key={option}>{option}</option>;
+        })}
+      </select>
+    </div>
+  );
+};
+
+const Slider = ({ sliderData, sliderHandler }) => {
   return (
     <div className="slider">
       <span className="filter-name">{sliderData.name}</span>
@@ -84,35 +162,6 @@ const FilterSlider = ({ sliderData, sliderHandler }) => {
         onChange={sliderHandler}
       ></input>
     </div>
-  );
-};
-
-const FilterCustomOverlayChoices = ({
-  overlay,
-  overlayHandler,
-  selectedOverlay,
-}) => {
-  return (
-    <>
-      <span className="overlay-title">Overlay</span>
-      <div className="overlay-choices">
-        {overlay.options.map((option) => {
-          return (
-            <div className="choice" key={option}>
-              <label htmlFor={option}>{option}</label>
-              <input
-                type="radio"
-                id={option}
-                name="overlay-type"
-                value={option}
-                onChange={overlayHandler}
-                checked={selectedOverlay === option}
-              />
-            </div>
-          );
-        })}
-      </div>
-    </>
   );
 };
 

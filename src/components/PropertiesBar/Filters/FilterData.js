@@ -1,3 +1,29 @@
+const mixBlendModeObj = {
+  name: "Mix Blend Mode",
+  options: [
+    "normal",
+    "multiply",
+    "screen",
+    "overlay",
+    "darken",
+    "lighten",
+    "color-dodge",
+    "color-burn",
+    "hard-light",
+    "soft-light",
+    "difference",
+    "exclusion",
+    "hue",
+    "saturation",
+    "color",
+    "luminosity",
+    "initial",
+    "inherit",
+    "unset",
+  ],
+  selectedOption: "normal",
+};
+
 const filterDataCustom = {
   filters: [
     {
@@ -73,7 +99,14 @@ const filterDataCustom = {
       "Solid Background": {
         "background-color": "rgba(255, 87, 87, 1)",
         "mix-blend-mode": { ...mixBlendModeObj },
-        opacity: "50%",
+        opacity: {
+          type: "slider",
+          name: "Opacity",
+          min: "0",
+          value: "100",
+          max: "200",
+          unit: "%",
+        },
       },
       "Linear Gradient": {
         "color-1": "rgba(255, 87, 87, 1)",
@@ -93,7 +126,14 @@ const filterDataCustom = {
           selectedOption: "to bottom",
         },
         "mix-blend-mode": { ...mixBlendModeObj },
-        opacity: "50%",
+        opacity: {
+          type: "slider",
+          name: "Opacity",
+          min: "0",
+          value: "100",
+          max: "200",
+          unit: "%",
+        },
       },
       "Radial Gradient": {
         "color-1": "rgba(255, 87, 87, 1)",
@@ -128,31 +168,6 @@ const filterDataCustom = {
       },
     },
   },
-};
-
-const mixBlendModeObj = {
-  options: [
-    "normal",
-    "multiply",
-    "screen",
-    "overlay",
-    "darken",
-    "lighten",
-    "color-dodge",
-    "color-burn",
-    "hard-light",
-    "soft-light",
-    "difference",
-    "exclusion",
-    "hue",
-    "saturation",
-    "color",
-    "luminosity",
-    "initial",
-    "inherit",
-    "unset",
-  ],
-  selectedOption: "normal",
 };
 
 const filterDataPresets = [
