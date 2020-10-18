@@ -3,10 +3,39 @@ import ColorPicker from "/src/components/Utils/ColorPicker";
 import { filterDataCustom } from "./FilterData";
 
 const FilterCustom = () => {
+  const [customData, setCustomData] = useState({
+    filters: filterDataCustom.filters,
+    overlay: filterDataCustom.overlay,
+  });
+
+  const handleOverlaySelection = (e) => {
+    const overlay = { ...customData.overlay };
+    overlay.selectedOption = e.target.value;
+    setCustomData({ filters: customData.filters, overlay });
+  };
+
+  const handleFilterData = (updatedData) => {
+    const { overlay } = customData;
+    setCustomData({ filters: updatedData, overlay });
+  };
+
   return (
     <div className="filter-custom">
-      <FilterCustomSliders />
-      <FilterCustomOverlayChoices />
+      <FilterCustomSliders
+        data={customData.filters}
+        handler={handleFilterData}
+      />
+      <FilterCustomOverlayChoices
+        selected={customData.overlay.selectedOption}
+        data={customData.overlay}
+        handler={handleOverlaySelection}
+      />
+      <BackgroundProperty
+        selected={customData.overlay.selectedOption}
+        backgroundData={
+          customData.overlay.data[customData.overlay.selectedOption]
+        }
+      />
     </div>
   );
 };
@@ -46,27 +75,83 @@ const RadialGradientBackgroundProperties = () => {
   return <h1>RadialGradientBackgroundProperties</h1>;
 };
 
-const FilterCustomSliders = () => {
-  const [filterSlidersData, setFilterSlidersData] = useState(
-    filterDataCustom.filters
-  );
-
+const FilterCustomSliders = ({ data, handler }) => {
   const handleSliderChange = (e) => {
-    const updatedSliderData = filterSlidersData.map((item) => {
+    const updatedSliderData = data.map((item) => {
       if (item.name === e.target.id) item.value = e.target.value;
       return item;
     });
-    setFilterSlidersData(updatedSliderData);
+    handler(updatedSliderData);
   };
   return (
     <div className="filters">
-      {/* <span className="filter-title">Filters</span> */}
-      {filterSlidersData.map((slider) => {
+      {data.map((slider) => (
+        <Slider
+          sliderData={slider}
+          key={slider.name}
+          sliderHandler={handleSliderChange}
+        />
+      ))}
+    </div>
+  );
+};
+
+const FilterCustomOverlayChoices = ({ selected, data, handler }) => {
+  return (
+    <div className="overlay">
+      <RadioButtons
+        selected={selected}
+        radioButtonsData={data.options}
+        radioButtonsHandler={handler}
+      />
+    </div>
+  );
+};
+
+const BackgroundProperty = ({ selected, backgroundData }) => {
+  return <>{getBackgroundProperty(backgroundData)[selected]}</>;
+};
+
+const getBackgroundProperty = (backgroundData) => ({
+  None: null,
+  "Solid Background": <SolidBackgroundProperties data={backgroundData} />,
+  "Linear Gradient": (
+    <LinearGradientBackgroundProperties data={backgroundData} />
+  ),
+  "Radial Gradient": (
+    <RadialGradientBackgroundProperties data={backgroundData} />
+  ),
+});
+
+//Reusable Components
+
+const RadioButtons = ({ selected, radioButtonsData, radioButtonsHandler }) => {
+  return (
+    <div className="radio-btns">
+      <RadioButtonsName name={"Overlay"} />
+      <RadioButtonsChoices
+        data={{ selected, radioButtonsData }}
+        handler={radioButtonsHandler}
+      />
+    </div>
+  );
+};
+
+const RadioButtonsName = ({ name }) => {
+  return <span className="radio-btns-title">{name}</span>;
+};
+
+const RadioButtonsChoices = ({ data, handler }) => {
+  const { selected, radioButtonsData } = data;
+  return (
+    <div className="radio-btns-choices">
+      {radioButtonsData.map((option) => {
         return (
-          <Slider
-            sliderData={slider}
-            key={slider.name}
-            sliderHandler={handleSliderChange}
+          <RadioButtonsChoice
+            name={option}
+            checked={selected === option}
+            key={option}
+            handler={handler}
           />
         );
       })}
@@ -74,94 +159,98 @@ const FilterCustomSliders = () => {
   );
 };
 
-const FilterCustomOverlayChoices = () => {
-  const [overlayData, setOverlayData] = useState(filterDataCustom.overlay);
-
-  const [selectedOverlay, setSelectedOverlay] = useState(
-    filterDataCustom.overlay.selectedOption
-  );
-
-  const handleOverlaySelection = (e) => {
-    setSelectedOverlay(e.target.value);
-  };
+const RadioButtonsChoice = ({ name, checked, handler }) => {
   return (
-    <div className="overlay">
-      <RadioButtons
-        selected={selectedOverlay}
-        radioButtonsData={overlayData.options}
-        radioButtonsHandler={handleOverlaySelection}
+    <div className="choice" key={name}>
+      <RadioButtonsChoiceInput
+        name={name}
+        checked={checked}
+        handler={handler}
       />
-      {
-        {
-          None: null,
-          "Solid Background": (
-            <SolidBackgroundProperties
-              data={overlayData.data["Solid Background"]}
-            />
-          ),
-          "Linear Gradient": <LinearGradientBackgroundProperties />,
-          "Radial Gradient": <RadialGradientBackgroundProperties />,
-        }[selectedOverlay]
-      }
+      <RadioButtonsChoiceLabel name={name} />
     </div>
   );
 };
 
-//Reusable Components
-
-const RadioButtons = ({ selected, radioButtonsData, radioButtonsHandler }) => {
+const RadioButtonsChoiceInput = ({ name, checked, handler }) => {
   return (
-    <div className="radio-btns">
-      <span className="radio-btns-title">Overlay</span>
-      <div className="radio-btns-choices">
-        {radioButtonsData.map((option) => {
-          return (
-            <div className="choice" key={option}>
-              <input
-                type="radio"
-                id={option}
-                name="overlay-type"
-                value={option}
-                onChange={radioButtonsHandler}
-                checked={selected === option}
-              />
-              <label htmlFor={option}>{option}</label>
-            </div>
-          );
-        })}
-      </div>
-    </div>
+    <input
+      type="radio"
+      id={name}
+      name="overlay-type"
+      value={name}
+      onChange={handler}
+      checked={checked}
+    />
   );
+};
+
+const RadioButtonsChoiceLabel = ({ name }) => {
+  return <label htmlFor={name}>{name}</label>;
 };
 
 const DropDown = ({ selected, dropDownData, dropDownHandler }) => {
   return (
     <div className="dropdown">
-      <span className="dropdown-title">{dropDownData.name}</span>
-      <select value={selected} onChange={dropDownHandler}>
-        {dropDownData.map((option) => {
-          return <option key={option}>{option}</option>;
-        })}
-      </select>
+      <DropDownName name={dropDownData.name} />
+      <DropDownSelections
+        data={{ selected, dropDownData }}
+        handler={dropDownHandler}
+      />
     </div>
   );
 };
 
+const DropDownName = ({ name }) => {
+  return <span className="dropdown-title">{name}</span>;
+};
+
+const DropDownSelections = ({ data, handler }) => {
+  const { selected, dropDownData } = data;
+  return (
+    <select value={selected} onChange={handler}>
+      {dropDownData.map((option) => (
+        <DropDownSelection option={option} key={option} />
+      ))}
+    </select>
+  );
+};
+
+const DropDownSelection = ({ option }) => {
+  return <option>{option}</option>;
+};
+
 const Slider = ({ sliderData, sliderHandler }) => {
+  const { name, value, unit, min, max } = sliderData;
   return (
     <div className="slider">
-      <span className="filter-name">{sliderData.name}</span>
-      <span className="filter-value">{`${sliderData.value}${sliderData.unit}`}</span>
-      <input
-        type="range"
-        min={sliderData.min}
-        max={sliderData.max}
-        id={sliderData.name}
-        value={sliderData.value}
-        className="filter-slider"
-        onChange={sliderHandler}
-      ></input>
+      <SliderName name={name} />
+      <SliderValue value={value} unit={unit} />
+      <SliderInput data={{ name, value, min, max }} handler={sliderHandler} />
     </div>
+  );
+};
+
+const SliderName = ({ name }) => {
+  return <span className="filter-name">{name}</span>;
+};
+
+const SliderValue = ({ value, unit }) => {
+  return <span className="filter-value">{`${value}${unit}`}</span>;
+};
+
+const SliderInput = ({ data, handler }) => {
+  const { name, value, min, max } = data;
+  return (
+    <input
+      type="range"
+      min={min}
+      max={max}
+      id={name}
+      value={value}
+      className="filter-slider"
+      onChange={handler}
+    ></input>
   );
 };
 

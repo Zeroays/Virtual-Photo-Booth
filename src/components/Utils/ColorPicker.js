@@ -11,33 +11,45 @@ const ColorPicker = () => {
   });
   const [pickerVisibility, setPickerVisibility] = useState(false);
 
-  const toggleDisplay = () => {
-    setPickerVisibility(!pickerVisibility);
-  };
+  const toggleDisplay = () => setPickerVisibility(!pickerVisibility);
 
-  const handleColorChange = (color) => {
-    console.log(color);
-    setColor(color.rgb);
-  };
+  const turnOffPicker = () => setPickerVisibility(false);
+
+  const handleColorChange = (color) => setColor(color.rgb);
 
   return (
     <div className="color-picker">
-      <div className="picker-swatch">
-        <div className="picker-color" onClick={toggleDisplay}></div>
-      </div>
+      <PickerSwatch displayHandler={toggleDisplay} />
       {pickerVisibility ? (
-        <div className="picker-popover">
-          <div
-            className="picker-cover"
-            onClick={() => {
-              setPickerVisibility(false);
-            }}
-          ></div>
-          <ChromePicker color={color} onChange={handleColorChange} />
-        </div>
+        <PickerPopOver
+          coverProps={turnOffPicker}
+          chromePickerProps={{ color, handleColorChange }}
+        />
       ) : null}
     </div>
   );
+};
+
+const PickerPopOver = ({ coverProps, chromePickerProps }) => {
+  const { color, handleColorChange } = chromePickerProps;
+  return (
+    <div className="picker-popover">
+      <PickerCover displayHandler={coverProps} />
+      <ChromePicker color={color} onChange={handleColorChange} />
+    </div>
+  );
+};
+
+const PickerSwatch = ({ displayHandler }) => {
+  return (
+    <div className="picker-swatch">
+      <div className="picker-color" onClick={displayHandler}></div>
+    </div>
+  );
+};
+
+const PickerCover = ({ displayHandler }) => {
+  return <div className="picker-cover" onClick={displayHandler}></div>;
 };
 
 export default ColorPicker;

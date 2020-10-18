@@ -18,21 +18,31 @@ const propertyExplanations = {
 const PropertiesBar = ({ property }) => {
   return (
     <div className="sidebar-properties">
-      <PropertiesBarTitle property={property} />
+      <PropertiesBarInfo property={property} />
       <PropertiesBarContent property={property} />
     </div>
   );
 };
 
-const PropertiesBarTitle = ({ property }) => {
+const PropertiesBarInfo = ({ property }) => {
   return (
     <div className="property-info">
-      <span className="property-title">{property}</span>
-      <button className="question-btn">
-        <FontAwesomeIcon icon={faQuestionCircle} />
-      </button>
+      <PropertiesBarTitle property={property} />
+      <PropertiesBarQuestionIcon />
       <PropertiesBarExplanation property={property} />
     </div>
+  );
+};
+
+const PropertiesBarTitle = ({ property }) => {
+  return <span className="property-title">{property}</span>;
+};
+
+const PropertiesBarQuestionIcon = () => {
+  return (
+    <button className="question-btn">
+      <FontAwesomeIcon icon={faQuestionCircle} />
+    </button>
   );
 };
 
@@ -46,16 +56,16 @@ const PropertiesBarExplanation = ({ property }) => {
 
 const PropertiesBarContent = ({ property }) => {
   return (
-    <div className="property-content">
-      {
-        {
-          Photos: <Photos />,
-          Props: <Props />,
-          Filters: <Filters />,
-        }[property]
-      }
-    </div>
+    <div className="property-content">{getPropertiesBarContent(property)}</div>
   );
+};
+
+const getPropertiesBarContent = (property) => {
+  return {
+    Photos: <Photos />,
+    Props: <Props />,
+    Filters: <Filters />,
+  }[property];
 };
 
 export default PropertiesBar;

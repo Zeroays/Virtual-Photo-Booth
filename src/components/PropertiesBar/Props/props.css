@@ -4,12 +4,12 @@
   padding-top: 0.8rem;
 }
 
-.props-search-handler {
+.props-search-bar {
   display: flex;
   justify-content: center;
 }
 
-.props-search-bar {
+.props-search-handler {
   position: fixed;
   background: white;
   border: 1px solid #343b46;
@@ -19,7 +19,7 @@
   z-index: 2;
 }
 
-.props-search-bar input {
+.props-search-handler input {
   outline: none;
   border: none;
   background: none;

@@ -9,7 +9,6 @@ const Props = () => {
   const [propQuery, setPropQuery] = useState("");
 
   const handlePropSelection = (img) => {
-    console.log(chosenProps);
     setChosenProps(chosenProps.concat(img));
   };
 
@@ -19,7 +18,7 @@ const Props = () => {
 
   return (
     <div className="props-pane-properties">
-      <PropsSearch query={propQuery} queryHandler={handlePropQuery} />
+      <PropsSearchBar query={propQuery} queryHandler={handlePropQuery} />
       <PropImages
         query={propQuery}
         propSelectionHandler={handlePropSelection}
@@ -28,27 +27,36 @@ const Props = () => {
   );
 };
 
-const PropsSearch = ({ query, queryHandler }) => {
+const PropsSearchBar = ({ query, queryHandler }) => {
+  return (
+    <div className="props-search-bar">
+      <PropsSearchHandler handler={queryHandler} data={query} />
+    </div>
+  );
+};
+
+const PropsSearchHandler = ({ handler, data }) => {
   return (
     <div className="props-search-handler">
-      <div className="props-search-bar">
-        <FontAwesomeIcon icon={faSearch} />
-        <input
-          type="input"
-          placeholder="Search props"
-          value={`${query}`}
-          onChange={queryHandler}
-        ></input>
-      </div>
+      <FontAwesomeIcon icon={faSearch} />
+      <input
+        type="input"
+        placeholder="Search props"
+        value={`${data}`}
+        onChange={handler}
+      ></input>
     </div>
   );
 };
 
 const PropImages = ({ query, propSelectionHandler }) => {
+  const searchQueryInPropName = (prop, query) => {
+    return prop.label.toLowerCase().includes(query.toLowerCase());
+  };
   return (
     <div className="props-pane-content">
       {propData.map((prop) => {
-        if (prop.label.toLowerCase().includes(query.toLowerCase()))
+        if (searchQueryInPropName(prop, query))
           return (
             <PropImage
               name={prop.label}

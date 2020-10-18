@@ -38,16 +38,27 @@ const SideBarChoice = ({ name, icon, propertyHandler }) => {
   };
   return (
     <div className="sidebar-choice">
-      <button
-        className="sidebar-btn"
-        onMouseEnter={handlePhotoStripVisibility}
-        onMouseLeave={handlePhotoStripVisibility}
-        onClick={() => propertyHandler(name)}
-      >
-        <FontAwesomeIcon icon={icon} />
-      </button>
+      <SideBarButton
+        data={{ name, icon }}
+        handlers={{ handlePhotoStripVisibility, propertyHandler }}
+      />
       <PhotoStrip name={name} visible={photoStripVisible} />
     </div>
+  );
+};
+
+const SideBarButton = ({ handlers, data }) => {
+  const { handlePhotoStripVisibility, propertyHandler } = handlers;
+  const { name, icon } = data;
+  return (
+    <button
+      className="sidebar-btn"
+      onMouseEnter={handlePhotoStripVisibility}
+      onMouseLeave={handlePhotoStripVisibility}
+      onClick={() => propertyHandler(name)}
+    >
+      <FontAwesomeIcon icon={icon} />
+    </button>
   );
 };
 
