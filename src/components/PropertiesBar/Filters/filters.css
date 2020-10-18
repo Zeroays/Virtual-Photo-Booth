@@ -9,6 +9,8 @@
 }
 
 .filter-pane-content {
+  display: flex;
+  justify-content: center;
   width: 100%;
 }
 
@@ -16,45 +18,42 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: fixed;
+  width: calc(0.845 * var(--properties-bar-width));
+  z-index: 3;
 }
 
 .filter-options-btn {
-  color: #f0f0f0a1;
-  background: black;
-  padding: 0.6rem;
+  color: #d9dbdf;
+  background: #343b46;
+  box-shadow: inset 0 0 3px #000;
+  font-size: 0.85rem;
+  padding: 0.6rem 0;
   width: 50%;
 }
 
 .filter-custom,
 .filter-presets {
-  background: #343b46;
   padding-top: 20px;
 }
 
-.filter-title,
-.overlay-title {
-  width: 85%;
-  text-transform: uppercase;
-  text-align: left;
-  letter-spacing: 0.05rem;
-  color: white;
+.filters {
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
   margin-bottom: 20px;
-}
-
-.overlay-title {
-  margin-top: 20px;
 }
 
 .slider {
   display: grid;
-  width: 85%;
+  width: 100%;
   grid-template-columns: 5fr 1fr;
   grid-row-gap: 0.75rem;
   padding-bottom: 25px;
   grid-template-areas:
     "filter-name filter-value"
     "filter-slider filter-slider";
-  color: rgba(255, 255, 255, 0.63);
+  color: #343b46;
 }
 
 .slider .filter-name {
@@ -64,10 +63,9 @@
 }
 
 .slider .filter-value {
-  background: #343b46;
   color: inherit;
   text-align: center;
-  padding: 0.4rem;
+  padding: 0.4rem 0;
   border-radius: 0.4rem;
 }
 
@@ -86,7 +84,7 @@
   width: 20px;
   height: 20px;
   border-radius: 20px;
-  background: linear-gradient(to right, #ff1616, #ff5757); /* Grey background */
+  background: linear-gradient(to right, #ff1616, #ff5757);
   cursor: pointer;
 }
 
@@ -94,7 +92,7 @@
   width: 20px;
   height: 20px;
   border-radius: 20px;
-  background: linear-gradient(to right, #ff1616, #ff5757); /* Grey background */
+  background: linear-gradient(to right, #ff1616, #ff5757);
   cursor: pointer;
 }
 
@@ -105,6 +103,30 @@
   align-items: flex-start;
   text-align: left;
   width: 100%;
+  margin-bottom: 30px;
+}
+
+.radio-btns-title {
+  width: 85%;
+  text-transform: uppercase;
+  text-align: left;
+  letter-spacing: 0.05rem;
+  color: #343b46;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.radio-btns-choices {
+  margin-top: 0.5rem;
+}
+
+.choice > *:hover {
+  cursor: pointer;
+  color: #343b4698;
+}
+
+.choice label {
+  padding-left: 1rem;
 }
 
 .filter-presets {
@@ -113,6 +135,7 @@
   justify-content: space-around;
   align-items: center;
   width: 100%;
+  margin-top: 30px;
 }
 
 .preset {
@@ -123,6 +146,7 @@
   height: auto;
   margin-bottom: 20px;
   text-align: center;
+  z-index: 2;
 }
 
 .preset:hover {
@@ -141,6 +165,6 @@
 
 .preset-name {
   width: 100%;
-  background-color: rgb(96, 110, 124);
+  background-color: #343b46;
   color: white;
 }

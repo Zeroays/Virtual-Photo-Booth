@@ -13,21 +13,23 @@ const Filters = () => {
   };
 
   return (
-    <div className="filter-pane-properties">
-      <div className="filter-pane-content">
-        <FilterTabsButtons
-          options={options}
-          filterSelectionHandler={handleFilterSelection}
-          selectedFilterTab={selectedFilterTab}
-        />
-        {
+    <>
+      <div className="filter-pane-properties">
+        <div className="filter-pane-content">
+          <FilterTabsButtons
+            options={options}
+            filterSelectionHandler={handleFilterSelection}
+            selectedFilterTab={selectedFilterTab}
+          />
           {
-            Preset: <FilterPresets />,
-            Custom: <FilterCustom />,
-          }[selectedFilterTab]
-        }
+            {
+              Preset: <FilterPresets />,
+              Custom: <FilterCustom />,
+            }[selectedFilterTab]
+          }
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
@@ -36,6 +38,12 @@ const FilterTabsButtons = ({
   filterSelectionHandler,
   selectedFilterTab,
 }) => {
+  const selectedTabStyle = {
+    color: "#343b46",
+    backgroundColor: "#d9dbdf",
+    boxShadow: "none",
+    fontSize: "1rem",
+  };
   return (
     <div className="filter-options">
       {options.map((option) => {
@@ -44,11 +52,7 @@ const FilterTabsButtons = ({
             name={option}
             key={option}
             filterSelectionHandler={filterSelectionHandler}
-            style={
-              option === selectedFilterTab
-                ? { background: "#343b46", color: "white" }
-                : null
-            }
+            style={option === selectedFilterTab ? selectedTabStyle : null}
           />
         );
       })}

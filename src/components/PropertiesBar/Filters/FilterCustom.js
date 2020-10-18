@@ -60,7 +60,7 @@ const FilterCustomSliders = () => {
   };
   return (
     <div className="filters">
-      <span className="filter-title">Filters</span>
+      {/* <span className="filter-title">Filters</span> */}
       {filterSlidersData.map((slider) => {
         return (
           <Slider
@@ -117,7 +117,6 @@ const RadioButtons = ({ selected, radioButtonsData, radioButtonsHandler }) => {
         {radioButtonsData.map((option) => {
           return (
             <div className="choice" key={option}>
-              <label htmlFor={option}>{option}</label>
               <input
                 type="radio"
                 id={option}
@@ -126,6 +125,7 @@ const RadioButtons = ({ selected, radioButtonsData, radioButtonsHandler }) => {
                 onChange={radioButtonsHandler}
                 checked={selected === option}
               />
+              <label htmlFor={option}>{option}</label>
             </div>
           );
         })}
