@@ -1,5 +1,13 @@
+.color-picker {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
 .color-choice {
   position: relative;
+  margin-right: 10px;
 }
 
 .picker-swatch {
@@ -15,7 +23,6 @@
   width: 36px;
   height: 14px;
   border-radius: 2px;
-  background: rgba(255, 0, 0, 1);
 }
 
 .picker-popover {

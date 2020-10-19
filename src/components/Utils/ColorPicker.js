@@ -5,10 +5,8 @@ import "./colorpicker.css";
 const ColorPicker = ({ data, handler }) => {
   return (
     <div className="color-picker">
+      <PickerChoice colorData={data} colorHandler={handler} />
       <PickerName name={data.name} />
-      <div className="color-choice">
-        <PickerChoice colorData={data} colorHandler={handler} />
-      </div>
     </div>
   );
 };
@@ -29,15 +27,15 @@ const PickerChoice = ({ colorData, colorHandler }) => {
   };
 
   return (
-    <>
-      <PickerSwatch displayHandler={toggleDisplay} />
+    <div className="color-choice">
+      <PickerSwatch colorData={colorData} displayHandler={toggleDisplay} />
       {pickerVisibility ? (
         <PickerPopOver
           coverProps={turnOffPicker}
           chromePickerProps={{ colorData, handleColorChange }}
         />
       ) : null}
-    </>
+    </div>
   );
 };
 
@@ -51,10 +49,18 @@ const PickerPopOver = ({ coverProps, chromePickerProps }) => {
   );
 };
 
-const PickerSwatch = ({ displayHandler }) => {
+const PickerSwatch = ({ colorData, displayHandler }) => {
+  const { value } = colorData;
+  const swatchStyle = {
+    backgroundColor: `rgba(${value.r}, ${value.g}, ${value.b}, ${value.a})`,
+  };
   return (
     <div className="picker-swatch">
-      <div className="picker-color" onClick={displayHandler}></div>
+      <div
+        className="picker-color"
+        onClick={displayHandler}
+        style={swatchStyle}
+      ></div>
     </div>
   );
 };
