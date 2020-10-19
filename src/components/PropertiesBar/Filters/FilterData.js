@@ -118,11 +118,12 @@ const filterDataCustom = {
         },
         stop_1: { name: "Stop 1", min: "1", max: "100", value: "10" },
         color_2: {
-          name: "Color 1",
+          name: "Color 2",
           value: { r: "255", g: "87", b: "87", a: "1" },
         },
         stop_2: { name: "Stop 2", min: "1", max: "100", value: "100" },
         gradient_direction: {
+          name: "Gradient Direction",
           options: [
             "to bottom left",
             "to bottom",
@@ -145,11 +146,12 @@ const filterDataCustom = {
         },
       },
       "Radial Gradient": {
-        "color-1": "rgba(255, 87, 87, 1)",
-        "stop-1": "10",
-        "color-2": "rgba(255, 22, 22, 1)",
-        "stop-2": "100",
-        "gradient-position": {
+        color_1: { name: "Color 1", value: { r: 255, g: 87, b: 87, a: 1 } },
+        stop_1: { name: "Stop 1", min: "1", max: "100", value: "10" },
+        color_2: { name: "Color 2", value: { r: 255, g: 87, b: 87, a: 1 } },
+        stop_2: { name: "Stop 2", min: "1", max: "100", value: "100" },
+        gradient_position: {
+          name: "Gradient Position",
           options: [
             "left top",
             "center top",
@@ -161,19 +163,27 @@ const filterDataCustom = {
             "center bottom",
             "right bottom",
           ],
-          selectedOption: "center center",
+          value: "center center",
         },
-        "gradient-size": {
+        gradient_size: {
+          name: "Gradient Size",
           options: [
             "closest-corner",
             "closest-side",
             "farthest-side",
             "farthest-corner",
           ],
-          selectedOption: "closest-corner",
+          value: "closest-corner",
         },
-        "mix-blend-mode": { ...mixBlendModeObj },
-        opacity: "50%",
+        mix_blend_mode: { ...mixBlendModeObj },
+        opacity: {
+          type: "slider",
+          name: "Opacity",
+          min: "0",
+          value: "100",
+          max: "200",
+          unit: "%",
+        },
       },
     },
   },

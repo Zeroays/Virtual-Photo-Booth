@@ -21,9 +21,6 @@ const FilterCustom = () => {
 
   const handleOverlayData = (value, name) => {
     const overlay = { ...customData.overlay };
-    // console.log(overlay.data[customData.overlay.selectedOption][name]);
-    // console.log(value);
-    // console.log(name);
     overlay.data[customData.overlay.selectedOption][name].value = value;
     setCustomData({ filters: customData.filters, overlay });
   };
@@ -61,7 +58,7 @@ const SolidBackgroundProperties = ({ data, handler }) => {
     <>
       <ColorPicker data={background_color} handler={propertiesHandler} />
       <DropDown data={mix_blend_mode} handler={propertiesHandler} />
-      <Slider sliderData={opacity} sliderHandler={propertiesHandler} />
+      <Slider data={opacity} handler={propertiesHandler} />
     </>
   );
 };
@@ -80,11 +77,47 @@ const LinearGradientBackgroundProperties = ({ data, handler }) => {
   const propertiesHandler = (value, name) => {
     handler(value, name.toLowerCase().replace(/ /g, "_"));
   };
-  return <NumberInput data={stop_1} handler={propertiesHandler} />;
+  return (
+    <>
+      <ColorPicker data={color_1} handler={propertiesHandler} />
+      <NumberInput data={stop_1} handler={propertiesHandler} />
+      <ColorPicker data={color_2} handler={propertiesHandler} />
+      <NumberInput data={stop_2} handler={propertiesHandler} />
+      <DropDown data={gradient_direction} handler={propertiesHandler} />
+      <DropDown data={mix_blend_mode} handler={propertiesHandler} />
+      <Slider data={opacity} handler={propertiesHandler} />
+    </>
+  );
 };
 
-const RadialGradientBackgroundProperties = () => {
-  return <h1>RadialGradientBackgroundProperties</h1>;
+const RadialGradientBackgroundProperties = ({ data, handler }) => {
+  const {
+    color_1,
+    stop_1,
+    color_2,
+    stop_2,
+    gradient_position,
+    gradient_size,
+    mix_blend_mode,
+    opacity,
+  } = data;
+
+  const propertiesHandler = (value, name) => {
+    handler(value, name.toLowerCase().replace(/ /g, "_"));
+  };
+
+  return (
+    <>
+      <ColorPicker data={color_1} handler={propertiesHandler} />
+      <NumberInput data={stop_1} handler={propertiesHandler} />
+      <ColorPicker data={color_2} handler={propertiesHandler} />
+      <NumberInput data={stop_2} handler={propertiesHandler} />
+      <DropDown data={gradient_position} handler={propertiesHandler} />
+      <DropDown data={gradient_size} handler={propertiesHandler} />
+      <DropDown data={mix_blend_mode} handler={propertiesHandler} />
+      <Slider data={opacity} handler={propertiesHandler} />
+    </>
+  );
 };
 
 const FilterCustomSliders = ({ data, handler }) => {
@@ -100,11 +133,7 @@ const FilterCustomSliders = ({ data, handler }) => {
   return (
     <div className="filters">
       {data.map((slider) => (
-        <Slider
-          sliderData={slider}
-          key={slider.name}
-          sliderHandler={handleSliderChange}
-        />
+        <Slider data={slider} key={slider.name} handler={handleSliderChange} />
       ))}
     </div>
   );
@@ -301,13 +330,13 @@ const DropDownSelection = ({ option }) => {
   return <option>{option}</option>;
 };
 
-const Slider = ({ sliderData, sliderHandler }) => {
-  const { name, value, unit, min, max } = sliderData;
+const Slider = ({ data, handler }) => {
+  const { name, value, unit, min, max } = data;
   return (
     <div className="slider">
       <SliderName name={name} />
       <SliderValue value={value} unit={unit} />
-      <SliderInput data={{ name, value, min, max }} handler={sliderHandler} />
+      <SliderInput data={{ name, value, min, max }} handler={handler} />
     </div>
   );
 };
