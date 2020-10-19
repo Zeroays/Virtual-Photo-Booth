@@ -21,7 +21,7 @@ const mixBlendModeObj = {
     "inherit",
     "unset",
   ],
-  selectedOption: "normal",
+  value: "normal",
 };
 
 const filterDataCustom = {
@@ -97,8 +97,11 @@ const filterDataCustom = {
     data: {
       None: null,
       "Solid Background": {
-        "background-color": "rgba(255, 87, 87, 1)",
-        "mix-blend-mode": { ...mixBlendModeObj },
+        background_color: {
+          name: "Background Color",
+          value: { r: "255", g: "87", b: "87", a: "1" },
+        },
+        mix_blend_mode: { ...mixBlendModeObj },
         opacity: {
           type: "slider",
           name: "Opacity",
@@ -109,11 +112,17 @@ const filterDataCustom = {
         },
       },
       "Linear Gradient": {
-        "color-1": "rgba(255, 87, 87, 1)",
-        "stop-1": "10",
-        "color-2": "rgba(255, 22, 22, 1)",
-        "stop-2": "100",
-        "gradient-direction": {
+        color_1: {
+          name: "Color 1",
+          value: { r: "255", g: "87", b: "87", a: "1" },
+        },
+        stop_1: { name: "Stop 1", min: "1", max: "100", value: "10" },
+        color_2: {
+          name: "Color 1",
+          value: { r: "255", g: "87", b: "87", a: "1" },
+        },
+        stop_2: { name: "Stop 2", min: "1", max: "100", value: "100" },
+        gradient_direction: {
           options: [
             "to bottom left",
             "to bottom",
@@ -123,9 +132,9 @@ const filterDataCustom = {
             "to top left",
             "to top right",
           ],
-          selectedOption: "to bottom",
+          value: "to bottom",
         },
-        "mix-blend-mode": { ...mixBlendModeObj },
+        mix_blend_mode: { ...mixBlendModeObj },
         opacity: {
           type: "slider",
           name: "Opacity",

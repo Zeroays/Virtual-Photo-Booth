@@ -129,6 +129,24 @@
   padding-left: 1rem;
 }
 
+.number-input {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+
+.input-field {
+  padding: 5px;
+  background: black;
+  color: white;
+}
+
+.input-btn {
+  height: 100%;
+  padding: 0 5px;
+}
+
 .filter-presets {
   display: flex;
   flex-wrap: wrap;
