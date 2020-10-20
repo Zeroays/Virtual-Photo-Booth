@@ -1,47 +1,37 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import ColorPicker from "/src/components/Utils/ColorPicker";
 import { filterDataCustom } from "./FilterData";
 
 const FilterCustom = () => {
-  const [customData, setCustomData] = useState({
-    filters: filterDataCustom.filters,
-    overlay: filterDataCustom.overlay,
-  });
+  const [filterData, setFilterData] = useState(filterDataCustom.filters);
+  const [overlayData, setOverlayData] = useState(filterDataCustom.overlay);
 
   const handleOverlaySelection = (e) => {
-    const overlay = { ...customData.overlay };
-    overlay.selectedOption = e.target.value;
-    setCustomData({ filters: customData.filters, overlay });
+    const { value, ...rest } = overlayData;
+    setOverlayData({ value: e.target.value, ...rest });
   };
-
   const handleFilterData = (updatedData) => {
-    const { overlay } = customData;
-    setCustomData({ filters: updatedData, overlay });
+    setFilterData(updatedData);
   };
 
-  const handleOverlayData = (value, name) => {
-    const overlay = { ...customData.overlay };
-    overlay.data[customData.overlay.selectedOption][name].value = value;
-    setCustomData({ filters: customData.filters, overlay });
+  const handleOverlayData = (newValue, name) => {
+    const { value, data, ...rest } = overlayData;
+    data[value][name].value = newValue;
+    setOverlayData({ value, data, ...rest });
   };
 
   return (
     <div className="filter-custom">
-      <FilterCustomSliders
-        data={customData.filters}
-        handler={handleFilterData}
-      />
+      <FilterCustomSliders data={filterData} handler={handleFilterData} />
       <FilterCustomOverlayChoices
-        selected={customData.overlay.selectedOption}
-        data={customData.overlay}
+        selected={overlayData.value}
+        data={overlayData}
         handler={handleOverlaySelection}
       />
       <OverlayProperties
-        selected={customData.overlay.selectedOption}
-        backgroundData={
-          customData.overlay.data[customData.overlay.selectedOption]
-        }
-        overlayDataHandler={handleOverlayData}
+        selected={overlayData.value}
+        data={overlayData.data[overlayData.value]}
+        handler={handleOverlayData}
       />
     </div>
   );
@@ -87,10 +77,6 @@ const LinearGradientBackgroundProperties = ({ data, handler }) => {
         data={{ color: color_2, stop: stop_2 }}
         handler={propertiesHandler}
       />
-      {/* <ColorPicker data={color_1} handler={propertiesHandler} />
-      <NumberInput data={stop_1} handler={propertiesHandler} />
-      <ColorPicker data={color_2} handler={propertiesHandler} />
-      <NumberInput data={stop_2} handler={propertiesHandler} /> */}
       <DropDown data={gradient_direction} handler={propertiesHandler} />
       <DropDown data={mix_blend_mode} handler={propertiesHandler} />
       <Slider data={opacity} handler={propertiesHandler} />
@@ -173,14 +159,10 @@ const FilterCustomOverlayChoices = ({ selected, data, handler }) => {
   );
 };
 
-const OverlayProperties = ({
-  selected,
-  backgroundData,
-  overlayDataHandler,
-}) => {
+const OverlayProperties = ({ selected, data, handler }) => {
   return (
     <div className="overlay-properties">
-      {getBackgroundProperty(backgroundData, overlayDataHandler)[selected]}
+      {getBackgroundProperty(data, handler)[selected]}
     </div>
   );
 };

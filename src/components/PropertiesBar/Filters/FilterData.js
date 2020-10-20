@@ -93,7 +93,7 @@ const filterDataCustom = {
   ],
   overlay: {
     options: ["None", "Solid Background", "Linear Gradient", "Radial Gradient"],
-    selectedOption: "None",
+    value: "None",
     data: {
       None: null,
       "Solid Background": {
