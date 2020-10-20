@@ -79,10 +79,18 @@ const LinearGradientBackgroundProperties = ({ data, handler }) => {
   };
   return (
     <>
-      <ColorPicker data={color_1} handler={propertiesHandler} />
+      <ColorPickerWithStop
+        data={{ color: color_1, stop: stop_1 }}
+        handler={propertiesHandler}
+      />
+      <ColorPickerWithStop
+        data={{ color: color_2, stop: stop_2 }}
+        handler={propertiesHandler}
+      />
+      {/* <ColorPicker data={color_1} handler={propertiesHandler} />
       <NumberInput data={stop_1} handler={propertiesHandler} />
       <ColorPicker data={color_2} handler={propertiesHandler} />
-      <NumberInput data={stop_2} handler={propertiesHandler} />
+      <NumberInput data={stop_2} handler={propertiesHandler} /> */}
       <DropDown data={gradient_direction} handler={propertiesHandler} />
       <DropDown data={mix_blend_mode} handler={propertiesHandler} />
       <Slider data={opacity} handler={propertiesHandler} />
@@ -108,15 +116,29 @@ const RadialGradientBackgroundProperties = ({ data, handler }) => {
 
   return (
     <>
-      <ColorPicker data={color_1} handler={propertiesHandler} />
-      <NumberInput data={stop_1} handler={propertiesHandler} />
-      <ColorPicker data={color_2} handler={propertiesHandler} />
-      <NumberInput data={stop_2} handler={propertiesHandler} />
+      <ColorPickerWithStop
+        data={{ color: color_1, stop: stop_1 }}
+        handler={propertiesHandler}
+      />
+      <ColorPickerWithStop
+        data={{ color: color_2, stop: stop_2 }}
+        handler={propertiesHandler}
+      />
       <DropDown data={gradient_position} handler={propertiesHandler} />
       <DropDown data={gradient_size} handler={propertiesHandler} />
       <DropDown data={mix_blend_mode} handler={propertiesHandler} />
       <Slider data={opacity} handler={propertiesHandler} />
     </>
+  );
+};
+
+const ColorPickerWithStop = ({ data, handler }) => {
+  const { color, stop } = data;
+  return (
+    <div className="color-picker-stop">
+      <ColorPicker data={color} handler={handler} />
+      <NumberInput data={stop} handler={handler} />
+    </div>
   );
 };
 
@@ -141,7 +163,7 @@ const FilterCustomSliders = ({ data, handler }) => {
 
 const FilterCustomOverlayChoices = ({ selected, data, handler }) => {
   return (
-    <div className="overlay">
+    <div className="overlay-choices">
       <RadioButtons
         selected={selected}
         radioButtonsData={data.options}
@@ -157,7 +179,9 @@ const OverlayProperties = ({
   overlayDataHandler,
 }) => {
   return (
-    <>{getBackgroundProperty(backgroundData, overlayDataHandler)[selected]}</>
+    <div className="overlay-properties">
+      {getBackgroundProperty(backgroundData, overlayDataHandler)[selected]}
+    </div>
   );
 };
 
