@@ -3,12 +3,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 }
 
 .canvas-image-content {
   width: 70%;
   min-width: 300px;
-  display: flex;
+  display: none;
 }
 
 .canvas-image-content img {
