@@ -32,7 +32,7 @@ const Canvas = () => {
 
     ctx.filter = "brightness(1.6) grayscale(1.2)";
     ctx.globalCompositeOperation = "source-over";
-    // ctx.drawImage(image, 0, 0, image.width, image.height);
+    ctx.drawImage(image, 0, 0, image.width, image.height);
     ctx.fillRect(0, 0, 300, 300);
     stageRef.current.getStage().content.style.filter = stageDimensions.filter;
     setCanvas(canvas);
