@@ -15,3 +15,10 @@
 .canvas-image-content img {
   width: 100%;
 }
+
+.canvas-image-content canvas {
+  /* width: 100%; */
+  /* position: absolute;
+  top: 0;
+  left: 0; */
+}
