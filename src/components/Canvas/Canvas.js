@@ -1,5 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
-import { Stage, Layer, Image, Transformer } from "react-konva";
+// import { Stage, Layer, Image, Transformer } from "react-konva";
 import useImage from "use-image";
 import "./canvas.css";
 
@@ -16,12 +16,12 @@ const Canvas = () => {
 
   return (
     <div className="canvas" ref={canvasRef}>
-      <Stage width={stageDimensions.width} height={stageDimensions.height}>
+      {/* <Stage width={stageDimensions.width} height={stageDimensions.height}>
         <Photo width={stageDimensions.width} height={stageDimensions.height} />
         <PhotoProps />
         <Overlay />
       </Stage>
-      <HiddenPhoto domRef={imageRef} />
+      <HiddenPhoto domRef={imageRef} /> */}
     </div>
   );
 };
