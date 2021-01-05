@@ -219,6 +219,6 @@ import Squirrel from "/src/assets/stockPhotos/squirrel.jpg";
 // WomanSitting,
 // Squirrel,
 
-const photoData = [Skateboarder, CatDog];
+const photoData = [];
 
 export default photoData;
