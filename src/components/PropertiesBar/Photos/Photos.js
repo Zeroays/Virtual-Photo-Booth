@@ -1,17 +1,24 @@
-import React, { useState, useRef } from "react";
+import React, { useRef } from "react";
 import "./photo.css";
 import photoData from "./PhotoData";
+import { useDispatch } from "react-redux";
+import { changePhoto } from "../../../redux/actions/changePhoto";
 
 const Photos = () => {
   const uploadButtonRef = useRef();
-  const [chosenPhoto, setChosenPhoto] = useState(null);
+  const dispatch = useDispatch();
 
   const handleFileUpload = () => {
+    console.log("click");
     uploadButtonRef.current.click();
   };
 
-  const handleFileChange = (e) => {
-    setChosenPhoto(e.target.value);
+  const handleFileChange = (image, source) => {
+    let photo = null;
+    if (source === "fromUpload")
+      photo = URL.createObjectURL(image.target.files[0]);
+    else if (source === "fromStock") photo = image;
+    dispatch(changePhoto(photo));
   };
 
   return (
@@ -36,7 +43,7 @@ const PhotoUploadButton = ({
       <input
         type="file"
         id="file"
-        onChange={fileChangeHandler}
+        onChange={(e) => fileChangeHandler(e, "fromUpload")}
         ref={uploadButtonRef}
         style={{ display: "none" }}
       />
@@ -73,7 +80,7 @@ const PhotoImage = ({ image, photoChoiceHandler }) => {
     <div
       className="stock-photo"
       style={{ backgroundImage: `url(${image})` }}
-      onClick={photoChoiceHandler}
+      onClick={() => photoChoiceHandler(image, "fromStock")}
     ></div>
   );
 };

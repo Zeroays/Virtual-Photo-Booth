@@ -1,28 +1,31 @@
 import React, { useRef, useEffect, useState } from "react";
-// import { Stage, Layer, Image, Transformer } from "react-konva";
+import { useSelector } from "react-redux";
+import { Stage, Layer, Image, Transformer } from "react-konva";
 import useImage from "use-image";
 import "./canvas.css";
 
 const Canvas = () => {
-  // const canvasRef = useRef();
+  const canvasRef = useRef();
   // const imageRef = useRef();
-  // const [stageDimensions, setStageDimensions] = useState({
-  //   width: 42,
-  //   height: 42,
-  // });
+  const img = useSelector((state) => state.canvasPhoto.img);
+  const [stageDimensions, setStageDimensions] = useState({
+    width: 320,
+    height: 42,
+  });
   // useWindowSize(() => {
   //   setStageDimensions(calculateNewStageDimensions(canvasRef, imageRef));
   // });
 
   return (
     //In div tag, className -> canvas ----- ref={canvasRef}
-    <div className="canvas">
+    <div className="canvas" ref={canvasRef}>
       {/* <Stage width={stageDimensions.width} height={stageDimensions.height}>
         <Photo width={stageDimensions.width} height={stageDimensions.height} />
         <PhotoProps />
         <Overlay />
       </Stage>
       <HiddenPhoto domRef={imageRef} /> */}
+      <img src={img} style={{ width: stageDimensions.width }} />
     </div>
   );
 };
@@ -61,8 +64,9 @@ const Overlay = () => {
   return <Layer></Layer>;
 };
 
-const Photo = ({ width, height }) => {
-  const [image] = useImage("/src/assets/stockPhotos/catdog.jpg");
+const Photo = ({ img, width, height }) => {
+  //"/src/assets/stockPhotos/catdog.jpg"
+  const [image] = useImage(img);
   return (
     <Layer>
       <Image image={image} width={width} height={height} />
