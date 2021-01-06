@@ -3,13 +3,17 @@ import propData from "./PropData";
 import "./props.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/fontawesome-free-solid";
+import { useDispatch } from "react-redux";
+import { addPhotoProp } from "../../../redux/actions/addPhotoProp";
 
 const Props = () => {
-  const [chosenProps, setChosenProps] = useState([]);
+  const dispatch = useDispatch();
+  // const [chosenProps, setChosenProps] = useState([]);
   const [propQuery, setPropQuery] = useState("");
 
   const handlePropSelection = (img) => {
-    setChosenProps(chosenProps.concat(img));
+    dispatch(addPhotoProp(img));
+    // setChosenProps(chosenProps.concat());
   };
 
   const handlePropQuery = (e) => {

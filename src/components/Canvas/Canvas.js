@@ -6,26 +6,32 @@ import "./canvas.css";
 
 const Canvas = () => {
   const canvasRef = useRef();
-  // const imageRef = useRef();
+  const imageRef = useRef();
   const img = useSelector((state) => state.canvasPhoto.img);
   const [stageDimensions, setStageDimensions] = useState({
-    width: 320,
+    width: 42,
     height: 42,
   });
-  // useWindowSize(() => {
-  //   setStageDimensions(calculateNewStageDimensions(canvasRef, imageRef));
-  // });
+  useWindowSize(() => {
+    setStageDimensions(calculateNewStageDimensions(canvasRef, imageRef));
+  });
 
   return (
     //In div tag, className -> canvas ----- ref={canvasRef}
     <div className="canvas" ref={canvasRef}>
-      {/* <Stage width={stageDimensions.width} height={stageDimensions.height}>
-        <Photo width={stageDimensions.width} height={stageDimensions.height} />
-        <PhotoProps />
-        <Overlay />
+      <Stage width={stageDimensions.width} height={stageDimensions.height}>
+        <Photo
+          img={img}
+          width={stageDimensions.width}
+          height={stageDimensions.height}
+        />
+
+        {/* <PhotoProps /> */}
+        {/* <Overlay /> */}
       </Stage>
-      <HiddenPhoto domRef={imageRef} /> */}
-      <img src={img} style={{ width: stageDimensions.width }} />
+      <HiddenPhoto img={img} domRef={imageRef} />
+
+      {/* <img src={img} style={{ width: stageDimensions.width }} /> */}
     </div>
   );
 };
@@ -52,10 +58,10 @@ const useWindowSize = (func) => {
   }, []);
 };
 
-const HiddenPhoto = ({ domRef }) => {
+const HiddenPhoto = ({ img, domRef }) => {
   return (
     <div className="canvas-image-content">
-      <img src="/src/assets/stockPhotos/catdog.jpg" alt="catdog" ref={domRef} />
+      <img src={img} alt="canvas photo" ref={domRef} />
     </div>
   );
 };
