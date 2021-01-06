@@ -129,7 +129,7 @@ const PhotoProps = ({
             onChange={(newAttrs) => {
               const changedPhotoProp = [...photoProps];
               changedPhotoProp[i] = newAttrs;
-              photoPropsHandler(photoProps);
+              photoPropsHandler(changedPhotoProp);
             }}
           />
         );
