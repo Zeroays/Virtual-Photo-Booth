@@ -6,8 +6,8 @@ module.exports = {
     index: "./src/index.js",
   },
   output: {
+    filename: "index_bundle.[contenthash].js",
     path: path.join(__dirname, "/dist"),
-    filename: "index_bundle.js",
   },
   module: {
     rules: [
@@ -23,7 +23,11 @@ module.exports = {
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: {
-          loader: "url-loader",
+          loader: "file-loader",
+          options: {
+            name: "[name].[hash].[ext]",
+            outputPath: "assets",
+          },
         },
       },
       {
@@ -35,6 +39,7 @@ module.exports = {
   plugins: [
     new HTMLWebpackPlugin({
       template: "./src/index.html",
+      favicon: "./src/assets/icons/camera_logo.png",
     }),
   ],
 };

@@ -4,18 +4,19 @@ import useImage from "use-image";
 import "./canvas.css";
 
 const Canvas = () => {
-  const canvasRef = useRef();
-  const imageRef = useRef();
-  const [stageDimensions, setStageDimensions] = useState({
-    width: 42,
-    height: 42,
-  });
-  useWindowSize(() => {
-    setStageDimensions(calculateNewStageDimensions(canvasRef, imageRef));
-  });
+  // const canvasRef = useRef();
+  // const imageRef = useRef();
+  // const [stageDimensions, setStageDimensions] = useState({
+  //   width: 42,
+  //   height: 42,
+  // });
+  // useWindowSize(() => {
+  //   setStageDimensions(calculateNewStageDimensions(canvasRef, imageRef));
+  // });
 
   return (
-    <div className="canvas" ref={canvasRef}>
+    //In div tag, className -> canvas ----- ref={canvasRef}
+    <div className="canvas">
       {/* <Stage width={stageDimensions.width} height={stageDimensions.height}>
         <Photo width={stageDimensions.width} height={stageDimensions.height} />
         <PhotoProps />
