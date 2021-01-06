@@ -6,9 +6,19 @@ import { useDispatch } from "react-redux";
 import { changePhotoPropData } from "../../redux/actions/changePhotoProps";
 import "./canvas.css";
 
+const toDownloadURI = (name, img) => {
+  let a = document.createElement("a");
+  a.download = name;
+  a.href = img;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+};
+
 const Canvas = () => {
   const canvasRef = useRef();
   const imageRef = useRef();
+  const stageRef = useRef();
   const img = useSelector((state) => state.canvasPhoto.img);
   const photoProps = useSelector((state) => state.canvasProps.photoProps);
 
@@ -17,6 +27,7 @@ const Canvas = () => {
   const [selectedProp, setSelectedProp] = useState(null);
 
   const checkDeselect = (e) => {
+    if (e.target.getLayer() === null) return;
     const clickedOnEmpty = e.target.getLayer().attrs.name === "canvas-photo";
     if (clickedOnEmpty) {
       setSelectedProp(null);
@@ -35,10 +46,14 @@ const Canvas = () => {
     setStageDimensions(calculateNewStageDimensions(canvasRef, imageRef));
   });
 
+  const savePhoto = () => {
+    toDownloadURI("photo.png", stageRef.current.toDataURL({ pixelRatio: 3 }));
+  };
+
   return (
-    //In div tag, className -> canvas ----- ref={canvasRef}
     <div className="canvas" ref={canvasRef}>
       <Stage
+        ref={stageRef}
         width={stageDimensions.width}
         height={stageDimensions.height}
         onMouseDown={checkDeselect}
@@ -55,12 +70,8 @@ const Canvas = () => {
           selectedProp={selectedProp}
           selectedPropHandler={setSelectedProp}
         />
-
-        {/* <Overlay /> */}
       </Stage>
       <HiddenPhoto img={img} domRef={imageRef} />
-
-      {/* <img src={img} style={{ width: stageDimensions.width }} /> */}
     </div>
   );
 };
