@@ -4,7 +4,7 @@ import "./props.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/fontawesome-free-solid";
 import { useDispatch } from "react-redux";
-import { addPhotoProp } from "../../../redux/actions/addPhotoProp";
+import { addPhotoProp } from "../../../redux/actions/changePhotoProps";
 
 const Props = () => {
   const dispatch = useDispatch();
