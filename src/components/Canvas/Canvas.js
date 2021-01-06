@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Stage, Layer, Image, Transformer } from "react-konva";
 import useImage from "use-image";
 import { useDispatch } from "react-redux";
-import { changePhotoPropData } from "../../redux/actions/changePhotoProps";
+import { changePhotoPropData } from "../../redux/actions/photoProps.action";
 import "./canvas.css";
 
 const toDownloadURI = (name, img) => {
@@ -15,7 +15,7 @@ const toDownloadURI = (name, img) => {
   document.body.removeChild(a);
 };
 
-const Canvas = () => {
+const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
   const canvasRef = useRef();
   const imageRef = useRef();
   const stageRef = useRef();
@@ -34,7 +34,7 @@ const Canvas = () => {
     }
   };
 
-  const onPhotoPropMove = (photoPropData) => {
+  const onPhotoPropChange = (photoPropData) => {
     dispatch(changePhotoPropData(photoPropData));
   };
 
@@ -45,9 +45,15 @@ const Canvas = () => {
   useWindowSize(() => {
     setStageDimensions(calculateNewStageDimensions(canvasRef, imageRef));
   });
+  useEffect(() => {
+    savePhoto();
+  }, [savingPhoto]);
 
   const savePhoto = () => {
-    toDownloadURI("photo.png", stageRef.current.toDataURL({ pixelRatio: 3 }));
+    if (savingPhoto) {
+      toDownloadURI("photo.png", stageRef.current.toDataURL({ pixelRatio: 3 }));
+      savingPhotoHandler(false);
+    }
   };
 
   return (
@@ -66,7 +72,7 @@ const Canvas = () => {
         />
         <PhotoProps
           photoProps={photoProps}
-          photoPropsHandler={onPhotoPropMove}
+          photoPropsHandler={onPhotoPropChange}
           selectedProp={selectedProp}
           selectedPropHandler={setSelectedProp}
         />
@@ -111,7 +117,6 @@ const Overlay = () => {
 };
 
 const Photo = ({ img, width, height }) => {
-  //"/src/assets/stockPhotos/catdog.jpg"
   const [image] = useImage(img);
   return (
     <Layer name="canvas-photo">

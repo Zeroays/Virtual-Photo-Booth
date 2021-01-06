@@ -8,16 +8,22 @@ import Canvas from "/src/components/Canvas/Canvas";
 const App = () => {
   const [currentProperty, setCurrentProperty] = useState("Photos");
 
+  const [savingPhoto, setSavingPhoto] = useState(false);
+
   const handleCurrentProperty = (property) => {
     setCurrentProperty(property);
   };
 
+  const handleSavePhoto = (state) => {
+    setSavingPhoto(state);
+  };
+
   return (
     <div className="main-wrapper">
-      <NavBar />
+      <NavBar savingPhotoHandler={handleSavePhoto} />
       <SideBar propertyHandler={handleCurrentProperty} />
       <PropertiesBar property={currentProperty} />
-      <Canvas />
+      <Canvas savingPhoto={savingPhoto} savingPhotoHandler={handleSavePhoto} />
     </div>
   );
 };

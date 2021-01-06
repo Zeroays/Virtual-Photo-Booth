@@ -2,11 +2,11 @@ import React from "react";
 import "./navbar.css";
 import logo from "../../assets/icons/camera_logo.png";
 
-const NavBar = () => {
+const NavBar = ({ savingPhotoHandler }) => {
   return (
     <div className="navbar">
       <NavBarLeftContent />
-      <NavBarRightContent />
+      <NavBarRightContent savingPhotoHandler={savingPhotoHandler} />
     </div>
   );
 };
@@ -19,10 +19,10 @@ const NavBarLeftContent = () => {
   );
 };
 
-const NavBarRightContent = () => {
+const NavBarRightContent = ({ savingPhotoHandler }) => {
   return (
     <div className="navbar-right-content">
-      <SaveButton />
+      <SaveButton savingPhotoHandler={savingPhotoHandler} />
     </div>
   );
 };
@@ -31,8 +31,12 @@ const Logo = () => {
   return <img className="logo" src={logo} alt="camera-logo" />;
 };
 
-const SaveButton = () => {
-  return <button className="save-btn">Save</button>;
+const SaveButton = ({ savingPhotoHandler }) => {
+  return (
+    <button onClick={() => savingPhotoHandler(true)} className="save-btn">
+      Save
+    </button>
+  );
 };
 
 export default NavBar;

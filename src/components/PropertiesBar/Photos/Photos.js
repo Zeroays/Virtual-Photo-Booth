@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import "./photo.css";
 import photoData from "./PhotoData";
 import { useDispatch } from "react-redux";
-import { changePhoto } from "../../../redux/actions/changePhoto";
+import { changePhoto } from "../../../redux/actions/photo.action";
 
 const Photos = () => {
   const uploadButtonRef = useRef();

@@ -1,5 +1,5 @@
-import changeCanvasPhotoReducer from "./changeCanvasPhoto";
-import changeCanvasPropsReducer from "./changeCanvasProps";
+import changeCanvasPhotoReducer from "./canvasPhoto.reducer";
+import changeCanvasPropsReducer from "./canvasProps.reducer";
 import { combineReducers } from "redux";
 
 const allReducers = combineReducers({

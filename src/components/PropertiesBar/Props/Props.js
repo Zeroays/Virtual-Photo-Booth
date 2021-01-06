@@ -4,16 +4,14 @@ import "./props.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/fontawesome-free-solid";
 import { useDispatch } from "react-redux";
-import { addPhotoProp } from "../../../redux/actions/changePhotoProps";
+import { addPhotoProp } from "../../../redux/actions/photoProps.action";
 
 const Props = () => {
   const dispatch = useDispatch();
-  // const [chosenProps, setChosenProps] = useState([]);
   const [propQuery, setPropQuery] = useState("");
 
   const handlePropSelection = (img) => {
     dispatch(addPhotoProp(img));
-    // setChosenProps(chosenProps.concat());
   };
 
   const handlePropQuery = (e) => {
