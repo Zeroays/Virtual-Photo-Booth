@@ -5,7 +5,7 @@
 
 <p>
   <h3 align="center">A React/Redux Photo Alteration App</h3>
-  <h5 align="center">Choose from over 30 Props to give your custom (or stock) photos some life!</h5>
+  <h4 align="center">Choose from over 30 Props to give your custom (or stock) photos some life!</h4>
 </p>
 
 <p align="center">
