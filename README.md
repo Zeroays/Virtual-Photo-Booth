@@ -3,7 +3,7 @@
   <h2 align="center"> Virtual Photo Booth (VPB) App</h2>
 </p>
 
-[Improvements / Future Updates](#improvements-/-future-updates)•[How to Use](#how-to-use)•[Credits](#credits)
+[Improvements / Future Updates](#improvements-/-future-updates) • [How to Use](#how-to-use) • [Credits](#credits)
 
 # Improvements / Future Updates
 
