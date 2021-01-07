@@ -58,6 +58,7 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
 
   return (
     <div className="canvas" ref={canvasRef}>
+      <HiddenPhoto img={img} domRef={imageRef} />
       <Stage
         ref={stageRef}
         width={stageDimensions.width}
@@ -77,16 +78,17 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
           selectedPropHandler={setSelectedProp}
         />
       </Stage>
-      <HiddenPhoto img={img} domRef={imageRef} />
     </div>
   );
 };
 
 const calculateNewStageDimensions = (canvasRef, imageRef) => {
   const widthPercentage = 0.7;
-  const aspectRatio = imageRef.current.width / imageRef.current.height;
+  const aspectRatio = imageRef.current.width / imageRef.current.height || 1.5;
+  console.log(imageRef.current.width, imageRef.current.height);
   const width = canvasRef.current.offsetWidth * widthPercentage;
   const height = width / aspectRatio;
+  console.log(width, height);
   return { width, height };
 };
 
