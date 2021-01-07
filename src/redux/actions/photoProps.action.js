@@ -5,6 +5,12 @@ const addPhotoProp = (photoProp) => {
   };
 };
 
+const deletePhotoProps = () => {
+  return {
+    type: "DELETE_PHOTO_PROPS",
+  };
+};
+
 const changePhotoPropData = (propData) => {
   return {
     type: "CHANGE_PHOTO_PROP_DATA",
@@ -12,4 +18,4 @@ const changePhotoPropData = (propData) => {
   };
 };
 
-export { addPhotoProp, changePhotoPropData };
+export { addPhotoProp, deletePhotoProps, changePhotoPropData };

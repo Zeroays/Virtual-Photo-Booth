@@ -55,6 +55,17 @@
   opacity: 0;
 }
 
+.clear-props-btn {
+  width: 100px;
+  height: 40px;
+  border-radius: 5px;
+  background: #343b46;
+  color: white;
+  z-index: 1;
+  text-align: center;
+  margin-right: 1.5rem;
+}
+
 .save-btn:hover::before {
   opacity: 1;
 }

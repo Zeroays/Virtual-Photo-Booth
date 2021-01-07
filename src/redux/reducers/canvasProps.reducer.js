@@ -10,6 +10,8 @@ const changeCanvasPropsReducer = (state = { photoProps: [] }, action) => {
         id: `prop${state.photoProps.length + 1}`,
       };
       return { photoProps: state.photoProps.concat(prop) };
+    case "DELETE_PHOTO_PROPS":
+      return { photoProps: [] };
     case "CHANGE_PHOTO_PROP_DATA":
       return { photoProps: action.payload };
     default:
