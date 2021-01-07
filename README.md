@@ -1,10 +1,11 @@
 <p align="center">
   <img height="250" src="https://github.com/Zeroays/Camagru-SPA/blob/master/src/assets/icons/camera_logo.png">
-  <h2 align="center"> Virtual Photo Booth (VPB) </h2>
+  <h1 align="center"> Virtual Photo Booth (VPB) </h1>
 </p>
 
 <p>
-  <h3 align="center">A React/Redux Photo Alteration App - Choose from over 30 Props to give your custom (or stock) photos some life!</h3>
+  <h3 align="center">A React/Redux Photo Alteration App</h3>
+  <h5 align="center">Choose from over 30 Props to give your custom (or stock) photos some life!</h5>
 </p>
 
 <p align="center">
