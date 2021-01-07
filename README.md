@@ -4,7 +4,7 @@
 
 ##### This project was built using React/Redux with Webpack to improve page performance, given inevitably large page size due to higher quality stock photos.
 
-Check out the App here --> (https://virtual-photo-booth.netlify.app "VPB Hosted by Netlify")
+Check out the App here --> [VPB Hosted by Netlify](https://virtual-photo-booth.netlify.app "VPB")
 
 
 
