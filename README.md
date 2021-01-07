@@ -1,8 +1,10 @@
 <p align="center">
-  <img height="300" src="https://github.com/Zeroays/Camagru-SPA/blob/master/src/assets/icons/camera_logo.png">
+  <img height="250" src="https://github.com/Zeroays/Camagru-SPA/blob/master/src/assets/icons/camera_logo.png">
 </p>
 
-# Virtual Photo Booth (VPB) App
+<center>
+  <h3> Virtual Photo Booth (VPB) App</h3>
+</center>
 
 ##### The alternative to a physical photo booth - select one of the stock photos, or upload your own.  Choose from over 30 different props to use.  When done, just click on the "Save Button".
 
