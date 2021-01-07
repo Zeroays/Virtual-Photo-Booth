@@ -3,7 +3,13 @@
   <h2 align="center"> Virtual Photo Booth (VPB) App</h2>
 </p>
 
+[Improvements / Future Updates](#improvements-/-future-updates)•[How to Use](#how-to-use)•[Credits](#credits)
 
+# Improvements / Future Updates
+
+# How to Use
+
+# Credits
 
 ##### The alternative to a physical photo booth - select one of the stock photos, or upload your own.  Choose from over 30 different props to use.  When done, just click on the "Save Button".
 
