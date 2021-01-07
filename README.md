@@ -1,4 +1,6 @@
-![VPB Icon](https://github.com/Zeroays/Camagru-SPA/blob/master/src/assets/icons/camera_logo.png)
+<p align="center">
+  <img height="300" src="https://github.com/Zeroays/Camagru-SPA/blob/master/src/assets/icons/camera_logo.png">
+</p>
 
 # Virtual Photo Booth (VPB) App
 
