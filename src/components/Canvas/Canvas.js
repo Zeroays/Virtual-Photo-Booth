@@ -85,10 +85,8 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
 const calculateNewStageDimensions = (canvasRef, imageRef) => {
   const widthPercentage = 0.7;
   const aspectRatio = imageRef.current.width / imageRef.current.height || 1.5;
-  console.log(imageRef.current.width, imageRef.current.height);
   const width = canvasRef.current.offsetWidth * widthPercentage;
   const height = width / aspectRatio;
-  console.log(width, height);
   return { width, height };
 };
 
