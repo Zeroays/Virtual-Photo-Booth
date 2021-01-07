@@ -3,9 +3,13 @@
   <h2 align="center"> Virtual Photo Booth (VPB) App</h2>
 </p>
 
-[Improvements / Future Updates](#improvements-/-future-updates) • [How to Use](#how-to-use) • [Credits](#credits)
+<p align="center">
+  <a href="#features">Features</a> • <a href="#future-updates">Future Updates</a> • <a href="#how-to-use">How to Use</a> • <a href="#credits">Credits</a>
+</p>
 
-# Improvements / Future Updates
+# Features
+
+# Future Updates
 
 # How to Use
 
