@@ -41,10 +41,10 @@ From your command line:
 
 ```
 # Clone this repository
-$ git clone https://github.com/Zeroays/Camagru-SPA.git
+$ git clone https://github.com/Zeroays/Virtual-Photo-Booth.git
 
 # Go into the repository
-$ cd Camagru\ React\ Webpack
+$ cd Virtual-Photo-Booth
 
 # Install dependencies
 $ npm install
