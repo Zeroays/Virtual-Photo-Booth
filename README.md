@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <a href="#features">Features</a> • <a href="#future-updates">Future Updates</a> • <a href="#how-to-use">How to Use</a> • <a href="#credits">Credits</a>
+  <a href="#features">Features</a> • <a href="#how-to-use">How to Use</a> • <a href="#future-updates">Future Updates</a> • <a href="#credits">Credits</a> • <a href="#license">License</a>
 </p>
 
 # Features
