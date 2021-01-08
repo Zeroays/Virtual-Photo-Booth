@@ -5,11 +5,11 @@ import WomanSitting from "/src/assets/stockPhotos/woman_sitting.jpg";
 import Squirrel from "/src/assets/stockPhotos/squirrel.jpg";
 import Bird from "/src/assets/stockPhotos/bird.jpg";
 import Conference from "/src/assets/stockPhotos/conference.jpg";
-import CrowdedTrainStation from "/src/assets/stockPhotos/crowded_train_station.jpg";
-import GroupGettingIceCream from "/src/assets/stockPhotos/group_getting_icecream.jpg";
-import GuyInForest from "/src/assets/stockPhotos/guy_in_forest.jpg";
+// import CrowdedTrainStation from "/src/assets/stockPhotos/crowded_train_station.jpg";
+// import GroupGettingIceCream from "/src/assets/stockPhotos/group_getting_icecream.jpg";
+// import GuyInForest from "/src/assets/stockPhotos/guy_in_forest.jpg";
 import GuyWithShades from "/src/assets/stockPhotos/guy_with_shades.jpg";
-import InsideTrain from "/src/assets/stockPhotos/inside_train.jpg";
+// import InsideTrain from "/src/assets/stockPhotos/inside_train.jpg";
 import KittenInBox from "/src/assets/stockPhotos/kitten_in_box.jpg";
 import OutdoorConversation from "/src/assets/stockPhotos/outdoor_conversation.jpg";
 
@@ -21,11 +21,11 @@ const photoData = [
   CatDog,
   Bird,
   Conference,
-  CrowdedTrainStation,
-  GroupGettingIceCream,
-  GuyInForest,
+  // CrowdedTrainStation,
+  // GroupGettingIceCream,
+  // GuyInForest,
   GuyWithShades,
-  InsideTrain,
+  // InsideTrain,
   KittenInBox,
   OutdoorConversation,
 ];
