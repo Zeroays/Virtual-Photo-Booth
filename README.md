@@ -16,7 +16,7 @@
 </p>
 
 <p align="center">
-  <a href="#features">Features</a> • <a href="#future-updates">Future Updates</a> • <a href="#how-to-use">How to Use</a> • <a href="#credits">Credits</a>
+  <a href="#features">Features</a> • <a href="#how-to-use">How to Use</a> • <a href="#future-updates">Future Updates</a> • <a href="#credits">Credits</a> • <a href="#license">License</a>
 </p>
 
 # Features
@@ -41,10 +41,10 @@ From your command line:
 
 ```
 # Clone this repository
-$ git clone https://github.com/Zeroays/Camagru-SPA.git
+$ git clone https://github.com/Zeroays/Virtual-Photo-Booth.git
 
 # Go into the repository
-$ cd Camagru\ React\ Webpack
+$ cd Virtual-Photo-Booth
 
 # Install dependencies
 $ npm install
