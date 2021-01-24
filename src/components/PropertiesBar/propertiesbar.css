@@ -81,3 +81,21 @@
   background: #d9dbdf91;
   border-radius: 0.4rem;
 }
+
+@media screen and (max-width: 480px) {
+  .property-content {
+    overflow-y: scroll;
+    padding-right: 1rem;
+    height: calc(var(--properties-bar-width) - var(--sidebar-width));
+  }
+  .property-info {
+    justify-content: flex-start;
+  }
+  .property-title {
+    padding-right: 1rem;
+    width: auto;
+  }
+  .property-explanation {
+    left: calc(var(--explanation-box-width) - calc(var(--box-offset) * 4));
+  }
+}

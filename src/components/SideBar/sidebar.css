@@ -59,3 +59,11 @@
   background: black;
   letter-spacing: 0.1rem;
 }
+
+@media screen and (max-width: 480px) {
+  .main-sidebar {
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100vw;
+  }
+}

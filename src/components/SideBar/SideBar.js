@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./sidebar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -33,9 +33,25 @@ const SideBar = ({ propertyHandler }) => {
 const SideBarChoice = ({ name, icon, propertyHandler }) => {
   const [photoStripVisible, setPhotoStripVisiblilty] = useState(false);
 
+  const smallScreenSize = 480;
+  const [width, setWidth] = useState(window.innerWidth);
+
   const handlePhotoStripVisibility = () => {
+    if (width <= smallScreenSize) return;
     setPhotoStripVisiblilty(!photoStripVisible);
   };
+
+  const handleWindowSizeChange = () => {
+    setWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
+
   return (
     <div className="sidebar-choice">
       <SideBarButton

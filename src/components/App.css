@@ -14,6 +14,7 @@
   --sidebar-width: 50px;
   --navbar-height: 3.5rem;
   --properties-bar-width: 300px;
+  --media-screen-breakpoint-max-width: 600px;
   font-family: "Abel", sans-serif;
 }
 
@@ -43,4 +44,29 @@ button:hover {
 .sidebar-properties,
 .canvas {
   height: calc(100vh - var(--navbar-height));
+}
+
+@media screen and (max-width: 480px) {
+  .main-wrapper {
+    grid-template-columns: auto;
+    width: 100vw;
+    grid-template-areas:
+      "navbar"
+      "canvas"
+      "sidebar"
+      "properties";
+    overflow: hidden;
+  }
+  .main-sidebar {
+    height: var(--sidebar-width);
+  }
+  .sidebar-properties {
+    height: var(--properties-bar-width);
+  }
+  .canvas {
+    height: calc(
+      100vh - var(--navbar-height) - var(--sidebar-width) -
+        calc(var(--properties-bar-width))
+    );
+  }
 }

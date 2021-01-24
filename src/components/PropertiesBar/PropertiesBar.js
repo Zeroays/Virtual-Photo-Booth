@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./propertiesbar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from "@fortawesome/fontawesome-free-solid";
