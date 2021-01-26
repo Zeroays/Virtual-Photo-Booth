@@ -23,7 +23,7 @@
 
 The alternative to a physical photo booth - select one of the stock photos, or upload your own.  Choose from over 30 different props to use.  Click on the prop, then drag/rotate/resize it.  When done, just click on the "Save" Button.
 
-VPB was built as a Single Page App (SPA) using React/Redux with Webpack to improve page performance, notably for decreasing load time. [KonvaJS](https://konvajs.org/) provides easy-to-integrate canvas manipulation, and is arguably the main library for this project.
+VPB was built using React/Redux with Webpack to improve page performance, notably for decreasing load time. [KonvaJS](https://konvajs.org/) provides easy-to-integrate canvas manipulation, and is arguably the main library for this project.
 
 VPB currently includes the following features...
 
