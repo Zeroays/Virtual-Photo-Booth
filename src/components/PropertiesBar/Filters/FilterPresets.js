@@ -1,4 +1,6 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+
 import { filterDataPresets } from "./FilterData";
 
 const FilterPresets = () => {
@@ -12,12 +14,15 @@ const FilterPresets = () => {
 };
 
 const FilterPreset = ({ preset }) => {
+  const img = useSelector((state) => state.canvasPhoto.img);
+  console.log(img);
+
   return (
     <div className="preset">
       <div className={`preset-filter ${preset.className}`}>
         <img
           className="preset-preview"
-          src="/src/assets/stockPhotos/woman_sitting.jpg"
+          src={img}
           alt="catdog"
         />
       </div>

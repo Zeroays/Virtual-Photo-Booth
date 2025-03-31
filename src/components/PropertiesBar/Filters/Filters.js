@@ -9,13 +9,13 @@ import "./filters.css";
 const Filters = () => {
   /* //UNCOMMENT WHEN FILTER FIXED// */
 
-  // const options = ["Preset", "Custom"];
+  const options = ["Preset", "Custom"];
 
-  // const [selectedFilterTab, setSelectedFilterTab] = useState("Preset");
+  const [selectedFilterTab, setSelectedFilterTab] = useState("Preset");
 
-  // const handleFilterSelection = (e) => {
-  //   setSelectedFilterTab(e.target.innerHTML);
-  // };
+  const handleFilterSelection = (e) => {
+    setSelectedFilterTab(e.target.innerHTML);
+  };
 
   /* //END UNCOMMENT */
 
@@ -25,7 +25,7 @@ const Filters = () => {
         <div className="filter-pane-content">
           {/* REMOVE PLACEHOLDER TEXT, WHEN FILTER FIXED*/}
 
-          <p
+          {/* <p
             style={{
               textTransform: "uppercase",
               letterSpacing: "2px",
@@ -33,13 +33,13 @@ const Filters = () => {
             }}
           >
             Coming Soon!
-          </p>
+          </p> */}
 
           {/* END REMOVE */}
 
           {/* //UNCOMMENT WHEN FILTER FIXED// */}
 
-          {/* <FilterTabsButtons
+          <FilterTabsButtons
             options={options}
             filterSelectionHandler={handleFilterSelection}
             selectedFilterTab={selectedFilterTab}
@@ -49,7 +49,7 @@ const Filters = () => {
               Preset: <FilterPresets />,
               Custom: <FilterCustom />,
             }[selectedFilterTab]
-          } */}
+          }
 
           {/* //END UNCOMMENT */}
         </div>
