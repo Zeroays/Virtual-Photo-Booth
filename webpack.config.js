@@ -2,7 +2,7 @@ const path = require("path");
 const HTMLWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserWebpackPlugin = require("terser-webpack-plugin");
-const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
   entry: {
@@ -13,7 +13,10 @@ module.exports = {
     path: path.join(__dirname, "/dist"),
   },
   optimization: {
-    minimizer: [new OptimizeCssAssetsPlugin(), new TerserWebpackPlugin()],
+    minimizer: [
+      new CssMinimizerPlugin(),
+      new TerserWebpackPlugin(),
+    ],
   },
   module: {
     rules: [
