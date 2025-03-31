@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import "css/cssgram.min.css";
 
 import { filterDataPresets } from "./FilterData";
 
@@ -15,7 +16,6 @@ const FilterPresets = () => {
 
 const FilterPreset = ({ preset }) => {
   const img = useSelector((state) => state.canvasPhoto.img);
-  console.log(img);
 
   return (
     <div className="preset">

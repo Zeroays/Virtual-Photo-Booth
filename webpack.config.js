@@ -8,6 +8,9 @@ module.exports = {
   entry: {
     index: "./src/index.js",
   },
+  resolve: {
+    modules: [path.resolve(__dirname, 'src'), 'node_modules'],
+  },
   output: {
     filename: "index_bundle.[contenthash].js",
     path: path.join(__dirname, "/dist"),
