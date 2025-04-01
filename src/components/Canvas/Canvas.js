@@ -21,7 +21,7 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
   const stageRef = useRef();
   const img = useSelector((state) => state.canvasPhoto.img);
   const photoProps = useSelector((state) => state.canvasProps.photoProps);
-  const presetFilter = useSelector((state) => state.canvasPhoto.presetFilterClassName);
+  const presetFilter = useSelector((state) => state.canvasFilter.presetFilterClassName);
 
   const dispatch = useDispatch();
 
