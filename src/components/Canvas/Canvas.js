@@ -21,6 +21,7 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
   const stageRef = useRef();
   const img = useSelector((state) => state.canvasPhoto.img);
   const photoProps = useSelector((state) => state.canvasProps.photoProps);
+  const presetFilter = useSelector((state) => state.canvasPhoto.presetFilterClassName);
 
   const dispatch = useDispatch();
 
@@ -65,6 +66,7 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
         height={stageDimensions.height}
         onMouseDown={checkDeselect}
         onTouchStart={checkDeselect}
+        className={presetFilter}
       >
         <Photo
           img={img}

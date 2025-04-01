@@ -4,3 +4,5 @@ export const changePhoto = (photo) => {
     payload: photo,
   };
 };
+
+
