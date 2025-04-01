@@ -11,6 +11,13 @@ const deletePhotoProps = () => {
   };
 };
 
+const deleteSinglePhotoProp = (propId) => {
+  return {
+    type: "DELETE_SINGLE_PHOTO_PROP",
+    payload: propId
+  };
+}
+
 const changePhotoPropData = (propData) => {
   return {
     type: "CHANGE_PHOTO_PROP_DATA",
@@ -18,4 +25,9 @@ const changePhotoPropData = (propData) => {
   };
 };
 
-export { addPhotoProp, deletePhotoProps, changePhotoPropData };
+export { 
+  addPhotoProp, 
+  deletePhotoProps, 
+  deleteSinglePhotoProp, 
+  changePhotoPropData 
+};

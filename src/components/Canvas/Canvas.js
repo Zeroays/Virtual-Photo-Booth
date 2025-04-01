@@ -4,6 +4,7 @@ import { Stage, Layer, Image, Transformer } from "react-konva";
 import useImage from "use-image";
 import { useDispatch } from "react-redux";
 import { changePhotoPropData } from "../../redux/actions/photoProps.action";
+import { deleteSinglePhotoProp } from "../../redux/actions/photoProps.action";
 import "./canvas.css";
 
 const toDownloadURI = (name, img) => {
@@ -35,6 +36,10 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
     }
   };
 
+  const handleDeleteSinglePhotoProp = () => {
+    dispatch(deleteSinglePhotoProp(selectedProp));
+  }
+
   const onPhotoPropChange = (photoPropData) => {
     dispatch(changePhotoPropData(photoPropData));
   };
@@ -48,7 +53,20 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
   });
   useEffect(() => {
     savePhoto();
-  }, [savingPhoto]);
+
+    const handleKeyDown = (event) => {
+      if (event.key === 'Backspace') {
+        handleDeleteSinglePhotoProp();
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+    
+  }, [selectedProp, savingPhoto]);
 
   const savePhoto = () => {
     if (savingPhoto) {
