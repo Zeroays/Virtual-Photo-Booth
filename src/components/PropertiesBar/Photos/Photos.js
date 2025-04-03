@@ -9,7 +9,6 @@ const Photos = () => {
   const dispatch = useDispatch();
 
   const handleFileUpload = () => {
-    console.log("click");
     uploadButtonRef.current.click();
   };
 

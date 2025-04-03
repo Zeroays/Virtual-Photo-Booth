@@ -4,6 +4,8 @@ import { Stage, Layer, Image, Transformer } from "react-konva";
 import useImage from "use-image";
 import { useDispatch } from "react-redux";
 import { changePhotoPropData } from "../../redux/actions/photoProps.action";
+import { deleteSinglePhotoProp } from "../../redux/actions/photoProps.action";
+import domtoimage from 'dom-to-image';
 import "./canvas.css";
 
 const toDownloadURI = (name, img) => {
@@ -21,6 +23,7 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
   const stageRef = useRef();
   const img = useSelector((state) => state.canvasPhoto.img);
   const photoProps = useSelector((state) => state.canvasProps.photoProps);
+  const presetFilter = useSelector((state) => state.canvasFilter.presetFilterClassName);
 
   const dispatch = useDispatch();
 
@@ -34,6 +37,10 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
     }
   };
 
+  const handleDeleteSinglePhotoProp = () => {
+    dispatch(deleteSinglePhotoProp(selectedProp));
+  }
+
   const onPhotoPropChange = (photoPropData) => {
     dispatch(changePhotoPropData(photoPropData));
   };
@@ -46,13 +53,33 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
     setStageDimensions(calculateNewStageDimensions(canvasRef, imageRef));
   });
   useEffect(() => {
-    savePhoto();
-  }, [savingPhoto]);
+    
 
-  const savePhoto = () => {
-    if (savingPhoto) {
-      toDownloadURI("photo.png", stageRef.current.toDataURL({ pixelRatio: 3 }));
+    const handleKeyDown = (event) => {
+      if (event.key === 'Backspace') {
+        handleDeleteSinglePhotoProp();
+      }
+    };
+
+    savePhoto();
+
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+    
+  }, [selectedProp, savingPhoto]);
+
+  const savePhoto = async() => {
+    if (!savingPhoto) return ;
+    try {
+      const element = stageRef.current.container();
+      const dataURL = await domtoimage.toPng(element);
+      toDownloadURI("photo.png", dataURL);
       savingPhotoHandler(false);
+    } catch (error) {
+      console.error("Error capturing the element:", error);
     }
   };
 
@@ -65,6 +92,7 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
         height={stageDimensions.height}
         onMouseDown={checkDeselect}
         onTouchStart={checkDeselect}
+        className={presetFilter}
       >
         <Photo
           img={img}

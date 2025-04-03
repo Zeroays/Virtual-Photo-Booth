@@ -22,7 +22,20 @@ const FilterCustom = () => {
 
   return (
     <div className="filter-custom">
-      <FilterCustomSliders data={filterData} handler={handleFilterData} />
+      <p
+        style={{
+          textTransform: "uppercase",
+          letterSpacing: "2px",
+          fontWeight: 500,
+          marginTop: "30px"
+        }}
+      >
+        Coming Soon!
+      </p>
+      
+      {/* UNCOMMENT BELOW WHEN FINISHED WITH Custom Filter */} 
+
+      {/* <FilterCustomSliders data={filterData} handler={handleFilterData} />
       <FilterCustomOverlayChoices
         selected={overlayData.value}
         data={overlayData}
@@ -32,7 +45,10 @@ const FilterCustom = () => {
         selected={overlayData.value}
         data={overlayData.data[overlayData.value]}
         handler={handleOverlayData}
-      />
+      /> */}
+
+      {/* END UNCOMMENT */}
+
     </div>
   );
 };

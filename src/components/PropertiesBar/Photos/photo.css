@@ -38,7 +38,7 @@
 .photo-pane-content .stock-photo {
   --photo-width-percent: 0.375;
   background-position: center;
-  background-size: 300%;
+  background-size: 150%;
   background-repeat: no-repeat;
   width: calc(var(--photo-width-percent) * var(--properties-bar-width));
   height: 100px;
@@ -48,7 +48,7 @@
 }
 
 .photo-pane-content .stock-photo:hover {
-  background-size: 180%;
+  background-size: 100%;
   cursor: pointer;
   opacity: 1;
 }
