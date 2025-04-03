@@ -82,6 +82,7 @@ VPB uses the following open source packages/libraries/toolkits...
 * React-Color
 * Font Awesome
 * CSSgram
+* Dom-To-Image
 
 
 # License
