@@ -5,6 +5,7 @@ import useImage from "use-image";
 import { useDispatch } from "react-redux";
 import { changePhotoPropData } from "../../redux/actions/photoProps.action";
 import { deleteSinglePhotoProp } from "../../redux/actions/photoProps.action";
+import domtoimage from 'dom-to-image';
 import "./canvas.css";
 
 const toDownloadURI = (name, img) => {
@@ -52,13 +53,15 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
     setStageDimensions(calculateNewStageDimensions(canvasRef, imageRef));
   });
   useEffect(() => {
-    savePhoto();
+    
 
     const handleKeyDown = (event) => {
       if (event.key === 'Backspace') {
         handleDeleteSinglePhotoProp();
       }
     };
+
+    savePhoto();
 
     window.addEventListener('keydown', handleKeyDown);
 
@@ -68,10 +71,15 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
     
   }, [selectedProp, savingPhoto]);
 
-  const savePhoto = () => {
-    if (savingPhoto) {
-      toDownloadURI("photo.png", stageRef.current.toDataURL({ pixelRatio: 3 }));
+  const savePhoto = async() => {
+    if (!savingPhoto) return ;
+    try {
+      const element = stageRef.current.container();
+      const dataURL = await domtoimage.toPng(element);
+      toDownloadURI("photo.png", dataURL);
       savingPhotoHandler(false);
+    } catch (error) {
+      console.error("Error capturing the element:", error);
     }
   };
 
