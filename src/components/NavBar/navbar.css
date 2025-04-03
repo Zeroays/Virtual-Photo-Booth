@@ -72,7 +72,7 @@
   display: block;
 }
 
-.clear-props-btn {
+.clear-layer-btn {
   width: 100px;
   height: 40px;
   background: #343b46;
@@ -83,7 +83,7 @@
   transition: opacity 100ms ease-in;
 }
 
-.clear-props-btn:hover {
+.clear-layer-btn:hover {
   opacity: 0.8;
 }
 

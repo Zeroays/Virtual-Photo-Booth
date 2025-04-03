@@ -3,6 +3,7 @@ import "./navbar.css";
 import logo from "../../assets/icons/camera_logo.png";
 import { useDispatch } from "react-redux";
 import { deletePhotoProps } from "../../redux/actions/photoProps.action";
+import { deleteFilters } from "../../redux/actions/filter.action";
 
 const NavBar = ({ savingPhotoHandler }) => {
   return (
@@ -42,6 +43,7 @@ const ClearDropDown = () => {
       <button className="clear-dropdown-btn">Clear</button>
         <div className="clear-dropdown-content">
           <ClearPropsButton />
+          <ClearFiltersButton />
         </div>
     </div>
   );
@@ -55,11 +57,25 @@ const ClearPropsButton = () => {
   };
 
   return (
-    <button className="clear-props-btn" onClick={deleteCanvasPhotoProps}>
+    <button className="clear-layer-btn" onClick={deleteCanvasPhotoProps}>
       Props
     </button>
   );
 };
+
+const ClearFiltersButton = () => {
+  const dispatch = useDispatch();
+
+  const deleteCanvasFilters = () => {
+    dispatch(deleteFilters());
+  }
+
+  return (
+    <button className="clear-layer-btn" onClick={deleteCanvasFilters}>
+      Filters
+    </button>
+  );
+}
 
 const SaveButton = ({ savingPhotoHandler }) => {
   return (
