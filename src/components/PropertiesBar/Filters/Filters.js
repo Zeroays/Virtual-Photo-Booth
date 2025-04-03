@@ -3,11 +3,7 @@ import FilterPresets from "./FilterPresets";
 import FilterCustom from "./FilterCustom";
 import "./filters.css";
 
-//Omitting filters, for now... -> KonvaJS has built in support,
-//but does not match CSS Filters
-
 const Filters = () => {
-  /* //UNCOMMENT WHEN FILTER FIXED// */
 
   const options = ["Preset", "Custom"];
 
@@ -17,28 +13,10 @@ const Filters = () => {
     setSelectedFilterTab(e.target.innerHTML);
   };
 
-  /* //END UNCOMMENT */
-
   return (
     <>
       <div className="filter-pane-properties">
         <div className="filter-pane-content">
-          {/* REMOVE PLACEHOLDER TEXT, WHEN FILTER FIXED*/}
-
-          {/* <p
-            style={{
-              textTransform: "uppercase",
-              letterSpacing: "2px",
-              fontWeight: 500,
-            }}
-          >
-            Coming Soon!
-          </p> */}
-
-          {/* END REMOVE */}
-
-          {/* //UNCOMMENT WHEN FILTER FIXED// */}
-
           <FilterTabsButtons
             options={options}
             filterSelectionHandler={handleFilterSelection}
