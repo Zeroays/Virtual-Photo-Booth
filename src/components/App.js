@@ -1,20 +1,15 @@
-import React, { useState } from 'react';
-import NavBar from '/src/components/NavBar/NavBar';
-import SideBar from '/src/components/SideBar/SideBar';
-import PropertiesBar from '/src/components/PropertiesBar/PropertiesBar';
-import Canvas from '/src/components/Canvas/Canvas';
-
+import React from 'react';
 import { PropertyContextProvider } from '/src/context/PropertyContext';
 import { SavingPhotoContextProvider } from '/src/context/SavingPhotoContext';
+
+import NavBar from './NavBar/NavBar';
+import SideBar from './SideBar/SideBar';
+import PropertiesBar from './PropertiesBar/PropertiesBar';
+import Canvas from './Canvas/Canvas';
+
 import './App.css';
 
 const App = () => {
-	// const [savingPhoto, setSavingPhoto] = useState(false);
-
-	// const handleSavePhoto = (state) => {
-	// 	setSavingPhoto(state);
-	// };
-
 	return (
 		<div className="main-wrapper">
       <SavingPhotoContextProvider>
