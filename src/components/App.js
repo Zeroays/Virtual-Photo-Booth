@@ -1,18 +1,15 @@
-import React, { useState } from "react";
-import "./App.css";
+import React, { useState, createContext } from "react";
 import NavBar from "/src/components/NavBar/NavBar";
 import SideBar from "/src/components/SideBar/SideBar";
 import PropertiesBar from "/src/components/PropertiesBar/PropertiesBar";
 import Canvas from "/src/components/Canvas/Canvas";
 
+import { PropertyContextProvider } from "/src/context/PropertyContext";
+import "./App.css";
+
 const App = () => {
-  const [currentProperty, setCurrentProperty] = useState("Photos");
 
   const [savingPhoto, setSavingPhoto] = useState(false);
-
-  const handleCurrentProperty = (property) => {
-    setCurrentProperty(property);
-  };
 
   const handleSavePhoto = (state) => {
     setSavingPhoto(state);
@@ -21,9 +18,13 @@ const App = () => {
   return (
     <div className="main-wrapper">
       <NavBar savingPhotoHandler={handleSavePhoto} />
-      <SideBar propertyHandler={handleCurrentProperty} />
-      <PropertiesBar property={currentProperty} />
+      
       <Canvas savingPhoto={savingPhoto} savingPhotoHandler={handleSavePhoto} />
+
+      <PropertyContextProvider>
+        <SideBar />
+        <PropertiesBar />
+      </PropertyContextProvider>
     </div>
   );
 };

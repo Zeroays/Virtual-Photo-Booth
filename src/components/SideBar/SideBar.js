@@ -7,13 +7,17 @@ import {
   faSlidersH,
 } from "@fortawesome/fontawesome-free-solid";
 
+import { usePropertyContext } from "../../context/PropertyContext";
+
 const sideBarContent = [
   { name: "Photos", icon: faImage },
   { name: "Props", icon: faThumbtack },
   { name: "Filters", icon: faSlidersH },
 ];
 
-const SideBar = ({ propertyHandler }) => {
+const SideBar = () => {
+  const {_, setCurrentProperty} = usePropertyContext();
+
   return (
     <div className="main-sidebar">
       {sideBarContent.map((item) => {
@@ -22,7 +26,7 @@ const SideBar = ({ propertyHandler }) => {
             name={item.name}
             icon={item.icon}
             key={item.name}
-            propertyHandler={propertyHandler}
+            propertyHandler={setCurrentProperty}
           />
         );
       })}
