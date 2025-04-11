@@ -7,66 +7,66 @@
 } */
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-size: 16px;
-  --sidebar-width: 50px;
-  --navbar-height: 3.5rem;
-  --properties-bar-width: 300px;
-  --media-screen-breakpoint-max-width: 600px;
-  font-family: "Abel", sans-serif;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-size: 16px;
+	--sidebar-width: 50px;
+	--navbar-height: 3.5rem;
+	--properties-bar-width: 300px;
+	--media-screen-breakpoint-max-width: 600px;
+	font-family: 'Abel', sans-serif;
 }
 
 body {
-  overflow: hidden;
+	overflow: hidden;
 }
 
 button {
-  border: none;
-  outline: none;
-  background: none;
+	border: none;
+	outline: none;
+	background: none;
 }
 
 button:hover {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .main-wrapper {
-  display: grid;
-  grid-template-columns: var(--sidebar-width) var(--properties-bar-width) auto;
-  grid-template-areas:
-    "navbar navbar navbar"
-    "sidebar properties canvas";
+	display: grid;
+	grid-template-columns: var(--sidebar-width) var(--properties-bar-width) auto;
+	grid-template-areas:
+		'navbar navbar navbar'
+		'sidebar properties canvas';
 }
 
 .main-sidebar,
 .sidebar-properties,
 .canvas {
-  height: calc(100vh - var(--navbar-height));
+	height: calc(100vh - var(--navbar-height));
 }
 
 @media screen and (max-width: 480px) {
-  .main-wrapper {
-    grid-template-columns: auto;
-    width: 100vw;
-    grid-template-areas:
-      "navbar"
-      "canvas"
-      "sidebar"
-      "properties";
-    overflow: hidden;
-  }
-  .main-sidebar {
-    height: var(--sidebar-width);
-  }
-  .sidebar-properties {
-    height: var(--properties-bar-width);
-  }
-  .canvas {
-    height: calc(
-      100vh - var(--navbar-height) - var(--sidebar-width) -
-        calc(var(--properties-bar-width))
-    );
-  }
+	.main-wrapper {
+		grid-template-columns: auto;
+		width: 100vw;
+		grid-template-areas:
+			'navbar'
+			'canvas'
+			'sidebar'
+			'properties';
+		overflow: hidden;
+	}
+	.main-sidebar {
+		height: var(--sidebar-width);
+	}
+	.sidebar-properties {
+		height: var(--properties-bar-width);
+	}
+	.canvas {
+		height: calc(
+			100vh - var(--navbar-height) - var(--sidebar-width) -
+				calc(var(--properties-bar-width))
+		);
+	}
 }

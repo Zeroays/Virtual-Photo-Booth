@@ -1,18 +1,18 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useState } from 'react';
 
 export const PropertyContext = createContext();
 
 export const PropertyContextProvider = ({ children }) => {
-    const [currentProperty, setCurrentProperty] = useState("Photos");
+	const [currentProperty, setCurrentProperty] = useState('Photos');
 
-    return (
-        <PropertyContext.Provider value={{ currentProperty, setCurrentProperty }}>
-            {children}
-        </PropertyContext.Provider>
-    );
-}
+	return (
+		<PropertyContext.Provider value={{ currentProperty, setCurrentProperty }}>
+			{children}
+		</PropertyContext.Provider>
+	);
+};
 
 export const usePropertyContext = () => {
-    const propertyContext = useContext(PropertyContext);
-    return propertyContext;
-}
+	const propertyContext = useContext(PropertyContext);
+	return propertyContext;
+};

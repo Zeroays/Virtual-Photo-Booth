@@ -1,93 +1,93 @@
-import React, { useState, useEffect } from "react";
-import "./sidebar.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React, { useState, useEffect } from 'react';
+import './sidebar.css';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
-  faImage,
-  faThumbtack,
-  faSlidersH,
-} from "@fortawesome/fontawesome-free-solid";
+	faImage,
+	faThumbtack,
+	faSlidersH,
+} from '@fortawesome/fontawesome-free-solid';
 
-import { usePropertyContext } from "../../context/PropertyContext";
+import { usePropertyContext } from '/src/context/PropertyContext';
 
 const sideBarContent = [
-  { name: "Photos", icon: faImage },
-  { name: "Props", icon: faThumbtack },
-  { name: "Filters", icon: faSlidersH },
+	{ name: 'Photos', icon: faImage },
+	{ name: 'Props', icon: faThumbtack },
+	{ name: 'Filters', icon: faSlidersH },
 ];
 
 const SideBar = () => {
-  const {_, setCurrentProperty} = usePropertyContext();
+	const { _, setCurrentProperty } = usePropertyContext();
 
-  return (
-    <div className="main-sidebar">
-      {sideBarContent.map((item) => {
-        return (
-          <SideBarChoice
-            name={item.name}
-            icon={item.icon}
-            key={item.name}
-            propertyHandler={setCurrentProperty}
-          />
-        );
-      })}
-    </div>
-  );
+	return (
+		<div className="main-sidebar">
+			{sideBarContent.map((item) => {
+				return (
+					<SideBarChoice
+						name={item.name}
+						icon={item.icon}
+						key={item.name}
+						propertyHandler={setCurrentProperty}
+					/>
+				);
+			})}
+		</div>
+	);
 };
 
 const SideBarChoice = ({ name, icon, propertyHandler }) => {
-  const [photoStripVisible, setPhotoStripVisiblilty] = useState(false);
+	const [photoStripVisible, setPhotoStripVisiblilty] = useState(false);
 
-  const smallScreenSize = 480;
-  const [width, setWidth] = useState(window.innerWidth);
+	const smallScreenSize = 480;
+	const [width, setWidth] = useState(window.innerWidth);
 
-  const handlePhotoStripVisibility = () => {
-    if (width <= smallScreenSize) return;
-    setPhotoStripVisiblilty(!photoStripVisible);
-  };
+	const handlePhotoStripVisibility = () => {
+		if (width <= smallScreenSize) return;
+		setPhotoStripVisiblilty(!photoStripVisible);
+	};
 
-  const handleWindowSizeChange = () => {
-    setWidth(window.innerWidth);
-  };
+	const handleWindowSizeChange = () => {
+		setWidth(window.innerWidth);
+	};
 
-  useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
-    };
-  }, []);
+	useEffect(() => {
+		window.addEventListener('resize', handleWindowSizeChange);
+		return () => {
+			window.removeEventListener('resize', handleWindowSizeChange);
+		};
+	}, []);
 
-  return (
-    <div className="sidebar-choice">
-      <SideBarButton
-        data={{ name, icon }}
-        handlers={{ handlePhotoStripVisibility, propertyHandler }}
-      />
-      <PhotoStrip name={name} visible={photoStripVisible} />
-    </div>
-  );
+	return (
+		<div className="sidebar-choice">
+			<SideBarButton
+				data={{ name, icon }}
+				handlers={{ handlePhotoStripVisibility, propertyHandler }}
+			/>
+			<PhotoStrip name={name} visible={photoStripVisible} />
+		</div>
+	);
 };
 
 const SideBarButton = ({ handlers, data }) => {
-  const { handlePhotoStripVisibility, propertyHandler } = handlers;
-  const { name, icon } = data;
-  return (
-    <button
-      className="sidebar-btn"
-      onMouseEnter={handlePhotoStripVisibility}
-      onMouseLeave={handlePhotoStripVisibility}
-      onClick={() => propertyHandler(name)}
-    >
-      <FontAwesomeIcon icon={icon} />
-    </button>
-  );
+	const { handlePhotoStripVisibility, propertyHandler } = handlers;
+	const { name, icon } = data;
+	return (
+		<button
+			className="sidebar-btn"
+			onMouseEnter={handlePhotoStripVisibility}
+			onMouseLeave={handlePhotoStripVisibility}
+			onClick={() => propertyHandler(name)}
+		>
+			<FontAwesomeIcon icon={icon} />
+		</button>
+	);
 };
 
 const PhotoStrip = ({ name, visible }) => {
-  return (
-    <div className={`photo-strip ${visible ? "strip-active" : ""}`}>
-      <span className="photo-text">{name}</span>
-    </div>
-  );
+	return (
+		<div className={`photo-strip ${visible ? 'strip-active' : ''}`}>
+			<span className="photo-text">{name}</span>
+		</div>
+	);
 };
 
 export default SideBar;

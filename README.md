@@ -21,21 +21,20 @@
 
 # Features
 
-The alternative to a physical photo booth - select one of the stock photos, or upload your own.  Choose from over 30 different props to use.  Click on the prop, then drag/rotate/resize it.  When done, just click on the "Save" Button.
+The alternative to a physical photo booth - select one of the stock photos, or upload your own. Choose from over 30 different props to use. Click on the prop, then drag/rotate/resize it. When done, just click on the "Save" Button.
 
 VPB was built using React/Redux with Webpack to improve page performance, notably for decreasing load time. [KonvaJS](https://konvajs.org/) provides easy-to-integrate canvas manipulation, and is arguably the main library for this project.
 
 VPB currently includes the following features...
 
-* Stock Photo Selection, or Upload Personal Photo to Canvas
-* Prop Selection onto Canvas; Support prop drag, resize, and rotation
-* "Clear Button" on NavBar removes props from Canvas
-* "Save Button" downloads final photo onto machine
-
+- Stock Photo Selection, or Upload Personal Photo to Canvas
+- Prop Selection onto Canvas; Support prop drag, resize, and rotation
+- "Clear Button" on NavBar removes props from Canvas
+- "Save Button" downloads final photo onto machine
 
 # How to Use
 
-This project uses NPM (Node Package Manager) to handle dependencies.  As such, you will need to install [Node.js](https://nodejs.org/en/) onto your machine.
+This project uses NPM (Node Package Manager) to handle dependencies. As such, you will need to install [Node.js](https://nodejs.org/en/) onto your machine.
 
 From your command line:
 
@@ -56,43 +55,34 @@ $ npm run start
 $ npm run build
 ```
 
-
 # Future Updates
 
-VPB still lacks several many features, that other popular photo editing apps have.  The following updates are planned...
+VPB still lacks several many features, that other popular photo editing apps have. The following updates are planned...
 
-* Instagram-like Filters
-* Mobile Friendly Layout
-* Undo/Redo and Zoom Feature
-* Other Canvas Tools for users, like free hand drawing and text
-* Real-Time Webcam Integration 
-
-
-
+- Instagram-like Filters
+- Mobile Friendly Layout
+- Undo/Redo and Zoom Feature
+- Other Canvas Tools for users, like free hand drawing and text
+- Real-Time Webcam Integration
 
 # Credits
 
 VPB uses the following open source packages/libraries/toolkits...
 
-* Node.js
-* React
-* Redux
-* Webpack/Babel
-* KonvaJS
-* React-Color
-* Font Awesome
-* CSSgram
-* Dom-To-Image
-
+- Node.js
+- React
+- Redux
+- Webpack/Babel
+- KonvaJS
+- React-Color
+- Font Awesome
+- CSSgram
+- Dom-To-Image
 
 # License
 
 MIT
 
-___
+---
 
-[Portfolio Website](https://vasurabaib.dev)  ·  [LinkedIn](https://www.linkedin.com/in/vasu-jimmy-rabaib-268b92ab/)
-
-
-
-
+[Portfolio Website](https://vasurabaib.dev) · [LinkedIn](https://www.linkedin.com/in/vasu-jimmy-rabaib-268b92ab/)
