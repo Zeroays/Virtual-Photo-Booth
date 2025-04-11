@@ -5,20 +5,22 @@ import PropertiesBar from '/src/components/PropertiesBar/PropertiesBar';
 import Canvas from '/src/components/Canvas/Canvas';
 
 import { PropertyContextProvider } from '/src/context/PropertyContext';
+import { SavingPhotoContextProvider } from '/src/context/SavingPhotoContext';
 import './App.css';
 
 const App = () => {
-	const [savingPhoto, setSavingPhoto] = useState(false);
+	// const [savingPhoto, setSavingPhoto] = useState(false);
 
-	const handleSavePhoto = (state) => {
-		setSavingPhoto(state);
-	};
+	// const handleSavePhoto = (state) => {
+	// 	setSavingPhoto(state);
+	// };
 
 	return (
 		<div className="main-wrapper">
-			<NavBar savingPhotoHandler={handleSavePhoto} />
-
-			<Canvas savingPhoto={savingPhoto} savingPhotoHandler={handleSavePhoto} />
+      <SavingPhotoContextProvider>
+        <NavBar />
+        <Canvas />
+      </SavingPhotoContextProvider>
 
 			<PropertyContextProvider>
 				<SideBar />

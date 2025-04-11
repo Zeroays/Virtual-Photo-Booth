@@ -4,12 +4,13 @@ import logo from '../../assets/icons/camera_logo.png';
 import { useDispatch } from 'react-redux';
 import { deletePhotoProps } from '../../redux/actions/photoProps.action';
 import { deleteFilters } from '../../redux/actions/filter.action';
+import { useSavingPhotoContext } from '/src/context/SavingPhotoContext';
 
-const NavBar = ({ savingPhotoHandler }) => {
+const NavBar = () => {
 	return (
 		<div className="navbar">
 			<NavBarLeftContent />
-			<NavBarRightContent savingPhotoHandler={savingPhotoHandler} />
+			<NavBarRightContent />
 		</div>
 	);
 };
@@ -22,11 +23,11 @@ const NavBarLeftContent = () => {
 	);
 };
 
-const NavBarRightContent = ({ savingPhotoHandler }) => {
+const NavBarRightContent = () => {
 	return (
 		<div className="navbar-right-content">
 			<ClearDropDown />
-			<SaveButton savingPhotoHandler={savingPhotoHandler} />
+			<SaveButton />
 		</div>
 	);
 };
@@ -75,9 +76,11 @@ const ClearFiltersButton = () => {
 	);
 };
 
-const SaveButton = ({ savingPhotoHandler }) => {
+const SaveButton = () => {
+  const { _, setSavingPhoto } = useSavingPhotoContext();
+
 	return (
-		<button onClick={() => savingPhotoHandler(true)} className="save-btn">
+		<button onClick={() => setSavingPhoto(true)} className="save-btn">
 			Save
 		</button>
 	);

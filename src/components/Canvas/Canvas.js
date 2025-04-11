@@ -7,6 +7,7 @@ import { changePhotoPropData } from '../../redux/actions/photoProps.action';
 import { deleteSinglePhotoProp } from '../../redux/actions/photoProps.action';
 import domtoimage from 'dom-to-image';
 import './canvas.css';
+import { useSavingPhotoContext } from '/src/context/SavingPhotoContext';
 
 const toDownloadURI = (name, img) => {
 	let a = document.createElement('a');
@@ -17,10 +18,13 @@ const toDownloadURI = (name, img) => {
 	document.body.removeChild(a);
 };
 
-const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
+const Canvas = () => {
+  const [selectedProp, setSelectedProp] = useState(null);
+
 	const canvasRef = useRef();
 	const imageRef = useRef();
 	const stageRef = useRef();
+
 	const img = useSelector((state) => state.canvasPhoto.img);
 	const photoProps = useSelector((state) => state.canvasProps.photoProps);
 	const presetFilter = useSelector(
@@ -29,7 +33,7 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
 
 	const dispatch = useDispatch();
 
-	const [selectedProp, setSelectedProp] = useState(null);
+	const { savingPhoto, setSavingPhoto } = useSavingPhotoContext();
 
 	const checkDeselect = (e) => {
 		if (e.target.getLayer() === null) return;
@@ -76,7 +80,7 @@ const Canvas = ({ savingPhoto, savingPhotoHandler }) => {
 			const element = stageRef.current.container();
 			const dataURL = await domtoimage.toPng(element);
 			toDownloadURI('photo.png', dataURL);
-			savingPhotoHandler(false);
+			setSavingPhoto(false);
 		} catch (error) {
 			console.error('Error capturing the element:', error);
 		}
