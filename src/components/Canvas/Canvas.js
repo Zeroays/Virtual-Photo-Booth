@@ -143,10 +143,6 @@ const HiddenPhoto = ({ img, domRef }) => {
 	);
 };
 
-const Overlay = () => {
-	return <Layer></Layer>;
-};
-
 const Photo = ({ img, width, height }) => {
 	const [image] = useImage(img);
 	return (
