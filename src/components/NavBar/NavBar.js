@@ -1,10 +1,13 @@
 import React from 'react';
-import './navbar.css';
-import logo from '../../assets/icons/camera_logo.png';
+
 import { useDispatch } from 'react-redux';
-import { deletePhotoProps } from '../../redux/actions/photoProps.action';
-import { deleteFilters } from '../../redux/actions/filter.action';
+import { deletePhotoProps } from '/src/redux/actions/photoProps.action';
+import { deleteFilters } from '/src/redux/actions/filter.action';
+
 import { useSavingPhotoContext } from '/src/context/SavingPhotoContext';
+
+import logo from '/src/assets/icons/camera_logo.png';
+import './navbar.css';
 
 const NavBar = () => {
 	return (
@@ -16,6 +19,10 @@ const NavBar = () => {
 };
 
 const NavBarLeftContent = () => {
+  const Logo = () => {
+    return <img className="logo" src={logo} alt="camera-logo" />;
+  };
+  
 	return (
 		<div className="navbar-left-content">
 			<Logo />
@@ -32,11 +39,36 @@ const NavBarRightContent = () => {
 	);
 };
 
-const Logo = () => {
-	return <img className="logo" src={logo} alt="camera-logo" />;
-};
 
 const ClearDropDown = () => {
+  const ClearPropsButton = () => {
+    const dispatch = useDispatch();
+  
+    const deleteCanvasPhotoProps = () => {
+      dispatch(deletePhotoProps());
+    };
+  
+    return (
+      <button className="clear-layer-btn" onClick={deleteCanvasPhotoProps}>
+        Props
+      </button>
+    );
+  };
+
+  const ClearFiltersButton = () => {
+    const dispatch = useDispatch();
+  
+    const deleteCanvasFilters = () => {
+      dispatch(deleteFilters());
+    };
+  
+    return (
+      <button className="clear-layer-btn" onClick={deleteCanvasFilters}>
+        Filters
+      </button>
+    );
+  };
+
 	return (
 		<div className="clear-dropdown">
 			<button className="clear-dropdown-btn">Clear</button>
@@ -45,34 +77,6 @@ const ClearDropDown = () => {
 				<ClearFiltersButton />
 			</div>
 		</div>
-	);
-};
-
-const ClearPropsButton = () => {
-	const dispatch = useDispatch();
-
-	const deleteCanvasPhotoProps = () => {
-		dispatch(deletePhotoProps());
-	};
-
-	return (
-		<button className="clear-layer-btn" onClick={deleteCanvasPhotoProps}>
-			Props
-		</button>
-	);
-};
-
-const ClearFiltersButton = () => {
-	const dispatch = useDispatch();
-
-	const deleteCanvasFilters = () => {
-		dispatch(deleteFilters());
-	};
-
-	return (
-		<button className="clear-layer-btn" onClick={deleteCanvasFilters}>
-			Filters
-		</button>
 	);
 };
 
@@ -85,5 +89,6 @@ const SaveButton = () => {
 		</button>
 	);
 };
+
 
 export default NavBar;
