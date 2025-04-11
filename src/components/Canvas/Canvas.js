@@ -1,13 +1,17 @@
 import React, { useRef, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { changePhotoPropData, deleteSinglePhotoProp } from '/src/redux/actions/photoProps.action';
+
+import { useSavingPhotoContext } from '/src/context/SavingPhotoContext';
+
 import { Stage, Layer, Image, Transformer } from 'react-konva';
 import useImage from 'use-image';
-import { useDispatch } from 'react-redux';
-import { changePhotoPropData } from '../../redux/actions/photoProps.action';
-import { deleteSinglePhotoProp } from '../../redux/actions/photoProps.action';
+
 import domtoimage from 'dom-to-image';
+
 import './canvas.css';
-import { useSavingPhotoContext } from '/src/context/SavingPhotoContext';
+
 
 const toDownloadURI = (name, img) => {
 	let a = document.createElement('a');
