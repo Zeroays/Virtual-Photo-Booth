@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import './sidebar.css';
+import { usePropertyContext } from '/src/context/PropertyContext';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faImage,
 	faThumbtack,
 	faSlidersH,
 } from '@fortawesome/fontawesome-free-solid';
-
-import { usePropertyContext } from '/src/context/PropertyContext';
+import './sidebar.css';
 
 const sideBarContent = [
 	{ name: 'Photos', icon: faImage },
@@ -16,25 +16,20 @@ const sideBarContent = [
 ];
 
 const SideBar = () => {
-	const { _, setCurrentProperty } = usePropertyContext();
-
 	return (
 		<div className="main-sidebar">
 			{sideBarContent.map((item) => {
 				return (
-					<SideBarChoice
-						name={item.name}
-						icon={item.icon}
-						key={item.name}
-						propertyHandler={setCurrentProperty}
-					/>
+					<SideBarChoice name={item.name} icon={item.icon} key={item.name} />
 				);
 			})}
 		</div>
 	);
 };
 
-const SideBarChoice = ({ name, icon, propertyHandler }) => {
+const SideBarChoice = ({ name, icon }) => {
+	const { _, setCurrentProperty } = usePropertyContext();
+
 	const [photoStripVisible, setPhotoStripVisiblilty] = useState(false);
 
 	const smallScreenSize = 480;
@@ -56,32 +51,32 @@ const SideBarChoice = ({ name, icon, propertyHandler }) => {
 		};
 	}, []);
 
+	const SideBarButton = ({ data }) => {
+		const { name, icon } = data;
+		return (
+			<button
+				className="sidebar-btn"
+				onMouseEnter={handlePhotoStripVisibility}
+				onMouseLeave={handlePhotoStripVisibility}
+				onClick={() => setCurrentProperty(name)}
+			>
+				<FontAwesomeIcon icon={icon} />
+			</button>
+		);
+	};
+
 	return (
 		<div className="sidebar-choice">
-			<SideBarButton
-				data={{ name, icon }}
-				handlers={{ handlePhotoStripVisibility, propertyHandler }}
-			/>
+			<SideBarButton data={{ name, icon }} />
 			<PhotoStrip name={name} visible={photoStripVisible} />
 		</div>
 	);
 };
 
-const SideBarButton = ({ handlers, data }) => {
-	const { handlePhotoStripVisibility, propertyHandler } = handlers;
-	const { name, icon } = data;
-	return (
-		<button
-			className="sidebar-btn"
-			onMouseEnter={handlePhotoStripVisibility}
-			onMouseLeave={handlePhotoStripVisibility}
-			onClick={() => propertyHandler(name)}
-		>
-			<FontAwesomeIcon icon={icon} />
-		</button>
-	);
-};
-
+// Left outside of SideBarChoice because
+// it would completely re-render if `visible` state
+// is changed.  As a consequence, the polaroid photo animation
+// would not work.
 const PhotoStrip = ({ name, visible }) => {
 	return (
 		<div className={`photo-strip ${visible ? 'strip-active' : ''}`}>
