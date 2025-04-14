@@ -27,8 +27,6 @@ const Filters = () => {
 							Custom: <FilterCustom />,
 						}[selectedFilterTab]
 					}
-
-					{/* //END UNCOMMENT */}
 				</div>
 			</div>
 		</>
