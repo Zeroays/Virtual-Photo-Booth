@@ -1,8 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { changePresetFilter } from '../../../redux/actions/filter.action';
+import React from 'react';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { changePresetFilter } from '/src/redux/actions/filter.action';
+
 import { filterDataPresets } from './FilterData';
-import { useDispatch } from 'react-redux';
 import 'css/cssgram.min.css';
 
 const FilterPresets = () => {
