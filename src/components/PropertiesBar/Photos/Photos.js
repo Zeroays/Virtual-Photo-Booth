@@ -1,8 +1,10 @@
 import React, { useRef } from 'react';
-import './photo.css';
-import photoData from './PhotoData';
+
 import { useDispatch } from 'react-redux';
-import { changePhoto } from '../../../redux/actions/photo.action';
+import { changePhoto } from '/src/redux/actions/photo.action';
+
+import photoData from './PhotoData';
+import './photo.css';
 
 const Photos = () => {
 	const uploadButtonRef = useRef();
@@ -61,26 +63,15 @@ const PhotoUploadButton = ({
 const PhotoImages = ({ photoChoiceHandler }) => {
 	return (
 		<div className="photo-pane-content">
-			{photoData.map((data, idx) => {
-				return (
-					<PhotoImage
-						image={data}
-						key={idx}
-						photoChoiceHandler={photoChoiceHandler}
-					/>
-				);
-			})}
+			{photoData.map((image, idx) =>
+				<div
+					key={idx}
+					className="stock-photo"
+					style={{ backgroundImage: `url(${image})` }}
+					onClick={() => photoChoiceHandler(image, 'fromStock')}
+				></div>
+			)}
 		</div>
-	);
-};
-
-const PhotoImage = ({ image, photoChoiceHandler }) => {
-	return (
-		<div
-			className="stock-photo"
-			style={{ backgroundImage: `url(${image})` }}
-			onClick={() => photoChoiceHandler(image, 'fromStock')}
-		></div>
 	);
 };
 
