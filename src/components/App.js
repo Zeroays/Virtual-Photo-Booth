@@ -12,10 +12,10 @@ import './App.css';
 const App = () => {
 	return (
 		<div className="main-wrapper">
-      <SavingPhotoContextProvider>
-        <NavBar />
-        <Canvas />
-      </SavingPhotoContextProvider>
+			<SavingPhotoContextProvider>
+				<NavBar />
+				<Canvas />
+			</SavingPhotoContextProvider>
 
 			<PropertyContextProvider>
 				<SideBar />
