@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from 'react';
+import { useWindowSize } from '/src/utils/useWindowSize';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { changePhotoPropData, deleteSinglePhotoProp } from '/src/redux/actions/photoProps.action';
@@ -123,20 +124,6 @@ const calculateNewStageDimensions = (canvasRef, imageRef) => {
 	const width = canvasRef.current.offsetWidth * widthPercentage;
 	const height = width / aspectRatio;
 	return { width, height };
-};
-
-const useWindowSize = (func) => {
-	useEffect(() => {
-		const handleResize = () => {
-			func();
-		};
-
-		window.addEventListener('resize', handleResize);
-
-		handleResize();
-
-		return () => window.removeEventListener('resize', handleResize);
-	}, []);
 };
 
 // Used as a reference to calculate
