@@ -192,6 +192,33 @@ const PhotoProp = ({ photoData, isSelected, onSelect, onChange }) => {
 	const propRef = useRef();
 	const trRef = useRef();
 
+	const changePosition = (e) => {
+		onChange({...photoData, x: e.target.x(),y: e.target.y(),});
+	}
+
+	const changeScale = (e) => {
+		const node = propRef.current;
+		const scaleX = node.scaleX();
+		const scaleY = node.scaleY();
+
+		node.scaleX(1);
+		node.scaleY(1);
+		onChange({
+			...photoData,
+			x: node.x(),
+			y: node.y(),
+			width: Math.max(5, node.width() * scaleX),
+			height: Math.max(node.height() * scaleY),
+		});
+	}
+
+	const changeTransformBox = (oldBox, newBox) => {
+		if (newBox.width < 5 || newBox.height < 5) {
+			return oldBox;
+		}
+		return newBox;
+	}
+
 	useEffect(() => {
 		if (isSelected) {
 			trRef.current.nodes([propRef.current]);
@@ -208,38 +235,15 @@ const PhotoProp = ({ photoData, isSelected, onSelect, onChange }) => {
 				ref={propRef}
 				{...photoData}
 				draggable
-				onDragEnd={(e) => {
-					onChange({
-						...photoData,
-						x: e.target.x(),
-						y: e.target.y(),
-					});
-				}}
-				onTransformEnd={(e) => {
-					const node = propRef.current;
-					const scaleX = node.scaleX();
-					const scaleY = node.scaleY();
-
-					node.scaleX(1);
-					node.scaleY(1);
-					onChange({
-						...photoData,
-						x: node.x(),
-						y: node.y(),
-						width: Math.max(5, node.width() * scaleX),
-						height: Math.max(node.height() * scaleY),
-					});
-				}}
+				onDragEnd={(e) => changePosition(e)}
+				onTransformEnd={(e) => changeScale(e)}
 			/>
 			{isSelected && (
 				<Transformer
 					ref={trRef}
-					boundBoxFunc={(oldBox, newBox) => {
-						if (newBox.width < 5 || newBox.height < 5) {
-							return oldBox;
-						}
-						return newBox;
-					}}
+					boundBoxFunc={(oldBox, newBox) => 
+						changeTransformBox(oldBox, newBox)
+					}
 				/>
 			)}
 		</>
