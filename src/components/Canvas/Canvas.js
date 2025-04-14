@@ -154,7 +154,7 @@ const PhotoProps = ({
 		<Layer name="canvas-photo-props">
 			{photoProps.map((prop, i) =>
 				<PhotoProp
-					key={i}
+					key={prop.id}
 					photoData={prop}
 					isSelected={prop.id === selectedProp}
 					onSelect={() => setSelectedProp(prop)}
