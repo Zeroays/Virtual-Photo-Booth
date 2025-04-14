@@ -32,21 +32,15 @@ const Props = () => {
 const PropsSearchBar = ({ query, queryHandler }) => {
 	return (
 		<div className="props-search-bar">
-			<PropsSearchHandler handler={queryHandler} data={query} />
-		</div>
-	);
-};
-
-const PropsSearchHandler = ({ handler, data }) => {
-	return (
-		<div className="props-search-handler">
-			<FontAwesomeIcon icon={faSearch} />
-			<input
-				type="input"
-				placeholder="Search props"
-				value={`${data}`}
-				onChange={handler}
-			></input>
+			<div className="props-search-handler">
+				<FontAwesomeIcon icon={faSearch} />
+				<input
+					type="input"
+					placeholder="Search props"
+					value={`${query}`}
+					onChange={queryHandler}
+				></input>
+			</div>
 		</div>
 	);
 };
