@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import propData from './PropData';
-import './props.css';
+
+import { useDispatch } from 'react-redux';
+import { addPhotoProp } from '/src/redux/actions/photoProps.action';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/fontawesome-free-solid';
-import { useDispatch } from 'react-redux';
-import { addPhotoProp } from '../../../redux/actions/photoProps.action';
+import propData from './PropData';
+import './props.css';
 
 const Props = () => {
 	const dispatch = useDispatch();
@@ -20,7 +22,10 @@ const Props = () => {
 
 	return (
 		<div className="props-pane-properties">
-			<PropsSearchBar query={propQuery} queryHandler={handlePropQuery} />
+			<PropsSearchBar 
+				query={propQuery} 
+				queryHandler={handlePropQuery} 
+			/>
 			<PropImages
 				query={propQuery}
 				propSelectionHandler={handlePropSelection}
@@ -49,33 +54,23 @@ const PropImages = ({ query, propSelectionHandler }) => {
 	const searchQueryInPropName = (prop, query) => {
 		return prop.label.toLowerCase().includes(query.toLowerCase());
 	};
+	const setProp = (prop) => {
+		propSelectionHandler(prop.img);
+	}
+
 	return (
 		<div className="props-pane-content">
-			{propData.map((prop) => {
-				if (searchQueryInPropName(prop, query))
-					return (
-						<PropImage
-							name={prop.label}
-							image={prop.img}
-							key={prop.img}
-							propSelectionHandler={() => {
-								propSelectionHandler(prop.img);
-							}}
-						/>
-					);
-			})}
-		</div>
-	);
-};
-
-const PropImage = ({ name, image, propSelectionHandler }) => {
-	return (
-		<div
-			className="prop"
-			onClick={propSelectionHandler}
-			style={{ backgroundImage: `url(${image})` }}
-		>
-			<span className="prop-label">{name}</span>
+			{propData.map((prop) =>
+				searchQueryInPropName(prop, query) &&
+				<div
+					key={prop.label}
+					className="prop"
+					onClick={() => setProp(prop)}
+					style={{ backgroundImage: `url(${prop.img})` }}
+				>
+					<span className="prop-label">{prop.label}</span>
+				</div>
+			)}
 		</div>
 	);
 };
