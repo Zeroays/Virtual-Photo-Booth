@@ -1,5 +1,6 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useWindowSize } from '/src/utils/useWindowSize';
+import { toDownloadURI } from '/src/utils/toDownloadURI';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { changePhotoPropData, deleteSinglePhotoProp } from '/src/redux/actions/photoProps.action';
@@ -12,16 +13,6 @@ import useImage from 'use-image';
 import domtoimage from 'dom-to-image';
 
 import './canvas.css';
-
-
-const toDownloadURI = (name, img) => {
-	let a = document.createElement('a');
-	a.download = name;
-	a.href = img;
-	document.body.appendChild(a);
-	a.click();
-	document.body.removeChild(a);
-};
 
 const Canvas = () => {
   const [selectedProp, setSelectedProp] = useState(null);
