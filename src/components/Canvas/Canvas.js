@@ -139,6 +139,8 @@ const useWindowSize = (func) => {
 	}, []);
 };
 
+// Used as a reference to calculate
+// canvas size on window resize
 const HiddenPhoto = ({ img, domRef }) => {
 	return (
 		<div className="canvas-image-content">
@@ -162,25 +164,25 @@ const PhotoProps = ({
 	selectedProp,
 	selectedPropHandler,
 }) => {
+	const setSelectedProp = (prop) => selectedPropHandler(prop.id);
+
+	const changePhotoProp = (newAttrs, i) => {
+		const changedPhotoProp = [...photoProps];
+		changedPhotoProp[i] = newAttrs;
+		photoPropsHandler(changedPhotoProp);
+	}
+
 	return (
 		<Layer name="canvas-photo-props">
-			{photoProps.map((prop, i) => {
-				return (
-					<PhotoProp
-						key={i}
-						photoData={prop}
-						isSelected={prop.id === selectedProp}
-						onSelect={() => {
-							selectedPropHandler(prop.id);
-						}}
-						onChange={(newAttrs) => {
-							const changedPhotoProp = [...photoProps];
-							changedPhotoProp[i] = newAttrs;
-							photoPropsHandler(changedPhotoProp);
-						}}
-					/>
-				);
-			})}
+			{photoProps.map((prop, i) =>
+				<PhotoProp
+					key={i}
+					photoData={prop}
+					isSelected={prop.id === selectedProp}
+					onSelect={() => setSelectedProp(prop)}
+					onChange={(newAttrs) => changePhotoProp(newAttrs, i)}
+				/>
+			)}
 		</Layer>
 	);
 };
