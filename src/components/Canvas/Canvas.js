@@ -162,7 +162,6 @@ const HiddenPhoto = ({ img, imageRef, canvasRef, stageDimensionsHandler }) => {
 	return (
 		<div className="canvas-image-content">
 			<img
-				key={img}
 				src={img}
 				alt="canvas photo"
 				onLoad={handleImageLoad}
@@ -173,7 +172,7 @@ const HiddenPhoto = ({ img, imageRef, canvasRef, stageDimensionsHandler }) => {
 };
 
 const Photo = ({ img, width, height }) => {
-	const [image] = useImage(img);
+	const [image] = useImage(img, 'anonymous');
 	return (
 		<Layer name="canvas-photo">
 			<Image image={image} width={width} height={height} />
