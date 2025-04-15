@@ -102,6 +102,7 @@ const Canvas = () => {
 				className={presetFilter}
 			>
 				<Photo
+					key={img}
 					img={img}
 					width={stageDimensions.width}
 					height={stageDimensions.height}
