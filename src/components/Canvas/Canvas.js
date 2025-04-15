@@ -162,7 +162,6 @@ const HiddenPhoto = ({ img, imageRef, canvasRef, stageDimensionsHandler }) => {
 	return (
 		<div className="canvas-image-content">
 			<img
-				key={img}
 				src={img}
 				alt="canvas photo"
 				onLoad={handleImageLoad}
