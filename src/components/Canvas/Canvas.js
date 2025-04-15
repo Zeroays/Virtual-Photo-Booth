@@ -84,7 +84,12 @@ const Canvas = () => {
 
 	return (
 		<div className="canvas" ref={canvasRef}>
-			<HiddenPhoto img={img} domRef={imageRef} />
+			<HiddenPhoto 
+				img={img} 
+				imageRef={imageRef} 
+				canvasRef={canvasRef} 
+				stageDimensionsHandler={setStageDimensions}
+			/>
 			<Stage
 				ref={stageRef}
 				width={stageDimensions.width}
@@ -110,19 +115,50 @@ const Canvas = () => {
 };
 
 const calculateNewStageDimensions = (canvasRef, imageRef) => {
+	if (!imageRef.current || !imageRef.current.width || !imageRef.current.height) {
+		return { width: 0, height: 0 };
+	}
+
 	const widthPercentage = 0.7;
-	const aspectRatio = imageRef.current.width / imageRef.current.height || 1.5;
-	const width = canvasRef.current.offsetWidth * widthPercentage;
-	const height = width / aspectRatio;
+	const heightPercentage = 0.90;
+
+	const imageWidth = imageRef.current.width;
+	const imageHeight = imageRef.current.height;
+
+	const canvasWidth = canvasRef.current.offsetWidth;
+	const canvasHeight = canvasRef.current.offsetHeight;
+
+	let height; let width;
+	if (imageWidth > imageHeight) {
+		width = widthPercentage * canvasWidth;
+		height = (imageHeight * width) / imageWidth;
+	} else {
+		height = heightPercentage * canvasHeight;
+		width = (imageWidth * height) / imageHeight;
+	}
+
 	return { width, height };
 };
 
 // Used as a reference to calculate
 // canvas size on window resize
-const HiddenPhoto = ({ img, domRef }) => {
+
+// onLoad prop of HiddenPhoto calculates
+// new image size and sets it to fit 
+// within the Stage
+const HiddenPhoto = ({ img, imageRef, canvasRef, stageDimensionsHandler }) => {
+	const handleImageLoad = () => {
+		stageDimensionsHandler(calculateNewStageDimensions(canvasRef, imageRef));
+	}
+
 	return (
 		<div className="canvas-image-content">
-			<img src={img} alt="canvas photo" ref={domRef} />
+			<img 
+				src={img} 
+				alt="canvas photo" 
+				onLoad={handleImageLoad} 
+				ref={imageRef} 
+			/>
 		</div>
 	);
 };
