@@ -16,16 +16,9 @@ const Photos = () => {
 
 	const handleFileChange = (image, source) => {
 		let photo = null;
-		if (source === 'fromUpload') {
-			const file = image.target.files[0];
-			const objectURL = URL.createObjectURL(file);
-			const photoWithKey = `${objectURL}#${Date.now()}`;
-
-			photo = photoWithKey;
-		}
-		else if (source === 'fromStock') {
-			photo = image;
-		}
+		if (source === 'fromUpload')
+			photo = URL.createObjectURL(image.target.files[0]);
+		else if (source === 'fromStock') photo = image;
 		dispatch(changePhoto(photo));
 	};
 
