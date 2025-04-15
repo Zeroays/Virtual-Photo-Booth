@@ -63,14 +63,14 @@ const PhotoUploadButton = ({
 const PhotoImages = ({ photoChoiceHandler }) => {
 	return (
 		<div className="photo-pane-content">
-			{photoData.map((image) =>
+			{photoData.map((image) => (
 				<div
 					key={image}
 					className="stock-photo"
 					style={{ backgroundImage: `url(${image})` }}
 					onClick={() => photoChoiceHandler(image, 'fromStock')}
 				></div>
-			)}
+			))}
 		</div>
 	);
 };

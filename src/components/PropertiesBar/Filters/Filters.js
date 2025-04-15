@@ -45,16 +45,16 @@ const FilterTabsButtons = ({
 	};
 	return (
 		<div className="filter-options">
-			{options.map((option) =>
+			{options.map((option) => (
 				<button
-				key={option}
-				className="filter-options-btn"
-				onClick={filterSelectionHandler}
-				style={option === selectedFilterTab ? selectedTabStyle : null}
+					key={option}
+					className="filter-options-btn"
+					onClick={filterSelectionHandler}
+					style={option === selectedFilterTab ? selectedTabStyle : null}
 				>
 					{option}
 				</button>
-			)}
+			))}
 		</div>
 	);
 };

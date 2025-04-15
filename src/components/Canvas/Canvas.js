@@ -3,7 +3,10 @@ import { useWindowSize } from '/src/utils/useWindowSize';
 import { toDownloadURI } from '/src/utils/toDownloadURI';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { changePhotoPropData, deleteSinglePhotoProp } from '/src/redux/actions/photoProps.action';
+import {
+	changePhotoPropData,
+	deleteSinglePhotoProp,
+} from '/src/redux/actions/photoProps.action';
 
 import { useSavingPhotoContext } from '/src/context/SavingPhotoContext';
 
@@ -15,7 +18,7 @@ import domtoimage from 'dom-to-image';
 import './canvas.css';
 
 const Canvas = () => {
-  const [selectedProp, setSelectedProp] = useState(null);
+	const [selectedProp, setSelectedProp] = useState(null);
 
 	const canvasRef = useRef();
 	const imageRef = useRef();
@@ -84,10 +87,10 @@ const Canvas = () => {
 
 	return (
 		<div className="canvas" ref={canvasRef}>
-			<HiddenPhoto 
-				img={img} 
-				imageRef={imageRef} 
-				canvasRef={canvasRef} 
+			<HiddenPhoto
+				img={img}
+				imageRef={imageRef}
+				canvasRef={canvasRef}
 				stageDimensionsHandler={setStageDimensions}
 			/>
 			<Stage
@@ -115,12 +118,16 @@ const Canvas = () => {
 };
 
 const calculateNewStageDimensions = (canvasRef, imageRef) => {
-	if (!imageRef.current || !imageRef.current.width || !imageRef.current.height) {
+	if (
+		!imageRef.current ||
+		!imageRef.current.width ||
+		!imageRef.current.height
+	) {
 		return { width: 0, height: 0 };
 	}
 
 	const widthPercentage = 0.7;
-	const heightPercentage = 0.90;
+	const heightPercentage = 0.9;
 
 	const imageWidth = imageRef.current.width;
 	const imageHeight = imageRef.current.height;
@@ -128,7 +135,8 @@ const calculateNewStageDimensions = (canvasRef, imageRef) => {
 	const canvasWidth = canvasRef.current.offsetWidth;
 	const canvasHeight = canvasRef.current.offsetHeight;
 
-	let height; let width;
+	let height;
+	let width;
 	if (imageWidth > imageHeight) {
 		width = widthPercentage * canvasWidth;
 		height = (imageHeight * width) / imageWidth;
@@ -144,20 +152,20 @@ const calculateNewStageDimensions = (canvasRef, imageRef) => {
 // canvas size on window resize
 
 // onLoad prop of HiddenPhoto calculates
-// new image size and sets it to fit 
+// new image size and sets it to fit
 // within the Stage
 const HiddenPhoto = ({ img, imageRef, canvasRef, stageDimensionsHandler }) => {
 	const handleImageLoad = () => {
 		stageDimensionsHandler(calculateNewStageDimensions(canvasRef, imageRef));
-	}
+	};
 
 	return (
 		<div className="canvas-image-content">
-			<img 
-				src={img} 
-				alt="canvas photo" 
-				onLoad={handleImageLoad} 
-				ref={imageRef} 
+			<img
+				src={img}
+				alt="canvas photo"
+				onLoad={handleImageLoad}
+				ref={imageRef}
 			/>
 		</div>
 	);
@@ -184,11 +192,11 @@ const PhotoProps = ({
 		const changedPhotoProp = [...photoProps];
 		changedPhotoProp[i] = newAttrs;
 		photoPropsHandler(changedPhotoProp);
-	}
+	};
 
 	return (
 		<Layer name="canvas-photo-props">
-			{photoProps.map((prop, i) =>
+			{photoProps.map((prop, i) => (
 				<PhotoProp
 					key={prop.id}
 					photoData={prop}
@@ -196,7 +204,7 @@ const PhotoProps = ({
 					onSelect={() => setSelectedProp(prop)}
 					onChange={(newAttrs) => changePhotoProp(newAttrs, i)}
 				/>
-			)}
+			))}
 		</Layer>
 	);
 };
@@ -207,8 +215,8 @@ const PhotoProp = ({ photoData, isSelected, onSelect, onChange }) => {
 	const trRef = useRef();
 
 	const changePosition = (e) => {
-		onChange({...photoData, x: e.target.x(),y: e.target.y(),});
-	}
+		onChange({ ...photoData, x: e.target.x(), y: e.target.y() });
+	};
 
 	const changeScale = (e) => {
 		const node = propRef.current;
@@ -224,14 +232,14 @@ const PhotoProp = ({ photoData, isSelected, onSelect, onChange }) => {
 			width: Math.max(5, node.width() * scaleX),
 			height: Math.max(node.height() * scaleY),
 		});
-	}
+	};
 
 	const changeTransformBox = (oldBox, newBox) => {
 		if (newBox.width < 5 || newBox.height < 5) {
 			return oldBox;
 		}
 		return newBox;
-	}
+	};
 
 	useEffect(() => {
 		if (isSelected) {
@@ -255,9 +263,7 @@ const PhotoProp = ({ photoData, isSelected, onSelect, onChange }) => {
 			{isSelected && (
 				<Transformer
 					ref={trRef}
-					boundBoxFunc={(oldBox, newBox) => 
-						changeTransformBox(oldBox, newBox)
-					}
+					boundBoxFunc={(oldBox, newBox) => changeTransformBox(oldBox, newBox)}
 				/>
 			)}
 		</>

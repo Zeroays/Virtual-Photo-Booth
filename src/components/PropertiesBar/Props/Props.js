@@ -22,10 +22,7 @@ const Props = () => {
 
 	return (
 		<div className="props-pane-properties">
-			<PropsSearchBar 
-				query={propQuery} 
-				queryHandler={handlePropQuery} 
-			/>
+			<PropsSearchBar query={propQuery} queryHandler={handlePropQuery} />
 			<PropImages
 				query={propQuery}
 				propSelectionHandler={handlePropSelection}
@@ -56,20 +53,22 @@ const PropImages = ({ query, propSelectionHandler }) => {
 	};
 	const setProp = (prop) => {
 		propSelectionHandler(prop.img);
-	}
+	};
 
 	return (
 		<div className="props-pane-content">
-			{propData.map((prop) =>
-				searchQueryInPropName(prop, query) &&
-				<div
-					key={prop.label}
-					className="prop"
-					onClick={() => setProp(prop)}
-					style={{ backgroundImage: `url(${prop.img})` }}
-				>
-					<span className="prop-label">{prop.label}</span>
-				</div>
+			{propData.map(
+				(prop) =>
+					searchQueryInPropName(prop, query) && (
+						<div
+							key={prop.label}
+							className="prop"
+							onClick={() => setProp(prop)}
+							style={{ backgroundImage: `url(${prop.img})` }}
+						>
+							<span className="prop-label">{prop.label}</span>
+						</div>
+					),
 			)}
 		</div>
 	);

@@ -19,10 +19,10 @@ const NavBar = () => {
 };
 
 const NavBarLeftContent = () => {
-  const Logo = () => {
-    return <img className="logo" src={logo} alt="camera-logo" />;
-  };
-  
+	const Logo = () => {
+		return <img className="logo" src={logo} alt="camera-logo" />;
+	};
+
 	return (
 		<div className="navbar-left-content">
 			<Logo />
@@ -39,35 +39,34 @@ const NavBarRightContent = () => {
 	);
 };
 
-
 const ClearDropDown = () => {
-  const ClearPropsButton = () => {
-    const dispatch = useDispatch();
-  
-    const deleteCanvasPhotoProps = () => {
-      dispatch(deletePhotoProps());
-    };
-  
-    return (
-      <button className="clear-layer-btn" onClick={deleteCanvasPhotoProps}>
-        Props
-      </button>
-    );
-  };
+	const ClearPropsButton = () => {
+		const dispatch = useDispatch();
 
-  const ClearFiltersButton = () => {
-    const dispatch = useDispatch();
-  
-    const deleteCanvasFilters = () => {
-      dispatch(deleteFilters());
-    };
-  
-    return (
-      <button className="clear-layer-btn" onClick={deleteCanvasFilters}>
-        Filters
-      </button>
-    );
-  };
+		const deleteCanvasPhotoProps = () => {
+			dispatch(deletePhotoProps());
+		};
+
+		return (
+			<button className="clear-layer-btn" onClick={deleteCanvasPhotoProps}>
+				Props
+			</button>
+		);
+	};
+
+	const ClearFiltersButton = () => {
+		const dispatch = useDispatch();
+
+		const deleteCanvasFilters = () => {
+			dispatch(deleteFilters());
+		};
+
+		return (
+			<button className="clear-layer-btn" onClick={deleteCanvasFilters}>
+				Filters
+			</button>
+		);
+	};
 
 	return (
 		<div className="clear-dropdown">
@@ -81,7 +80,7 @@ const ClearDropDown = () => {
 };
 
 const SaveButton = () => {
-  const { _, setSavingPhoto } = useSavingPhotoContext();
+	const { _, setSavingPhoto } = useSavingPhotoContext();
 
 	return (
 		<button onClick={() => setSavingPhoto(true)} className="save-btn">
@@ -89,6 +88,5 @@ const SaveButton = () => {
 		</button>
 	);
 };
-
 
 export default NavBar;
