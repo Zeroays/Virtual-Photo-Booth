@@ -40,13 +40,17 @@ const NavBarRightContent = () => {
 };
 
 const ClearDropDown = () => {
+	const dispatch = useDispatch();
+
+	const deleteCanvasPhotoProps = () => {
+		dispatch(deletePhotoProps());
+	};
+
+	const deleteCanvasFilters = () => {
+		dispatch(deleteFilters());
+	};
+
 	const ClearPropsButton = () => {
-		const dispatch = useDispatch();
-
-		const deleteCanvasPhotoProps = () => {
-			dispatch(deletePhotoProps());
-		};
-
 		return (
 			<button className="clear-layer-btn" onClick={deleteCanvasPhotoProps}>
 				Props
@@ -55,12 +59,6 @@ const ClearDropDown = () => {
 	};
 
 	const ClearFiltersButton = () => {
-		const dispatch = useDispatch();
-
-		const deleteCanvasFilters = () => {
-			dispatch(deleteFilters());
-		};
-
 		return (
 			<button className="clear-layer-btn" onClick={deleteCanvasFilters}>
 				Filters
@@ -68,12 +66,26 @@ const ClearDropDown = () => {
 		);
 	};
 
+	const ClearAllButton = () => {
+		const clearAll = () => {
+			deleteCanvasPhotoProps()
+			deleteCanvasFilters();
+		};
+
+		return (
+			<button className="clear-layer-btn" onClick={clearAll}>
+				All
+			</button>
+		);
+	}
+
 	return (
 		<div className="clear-dropdown">
 			<button className="clear-dropdown-btn">Clear</button>
 			<div className="clear-dropdown-content">
 				<ClearPropsButton />
 				<ClearFiltersButton />
+				<ClearAllButton />
 			</div>
 		</div>
 	);
