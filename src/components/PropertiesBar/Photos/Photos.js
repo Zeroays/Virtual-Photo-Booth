@@ -16,16 +16,15 @@ const Photos = () => {
 
 	const handleFileChange = (image, source) => {
 		let photo = null;
-		if (source === 'fromUpload') {
-			const file = image.target.files[0];
-			const objectURL = URL.createObjectURL(file);
-			const photoWithKey = `${objectURL}#${Date.now()}`;
+		if (source === 'fromUpload')
+			photo = URL.createObjectURL(image.target.files[0]);
+		else if (source === 'fromStock') photo = image;
 
-			photo = photoWithKey;
+		// Reset file input, so Google Chrome doesn't cache it
+		if (uploadButtonRef.current) {
+			uploadButtonRef.current.value = '';
 		}
-		else if (source === 'fromStock') {
-			photo = image;
-		}
+
 		dispatch(changePhoto(photo));
 	};
 
